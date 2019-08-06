@@ -1,0 +1,4 @@
+CREATE TABLE demo_sl.brands (
+	brand_id INT,
+	brand_name VARCHAR (255) NOT NULL
+);

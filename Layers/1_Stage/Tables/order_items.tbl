@@ -5,4 +5,9 @@ CREATE TABLE demo_sl.order_items (
 	quantity INT NOT NULL,
 	list_price DECIMAL (10, 2) NOT NULL,
 	discount DECIMAL (4, 2)
-);
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default
+;

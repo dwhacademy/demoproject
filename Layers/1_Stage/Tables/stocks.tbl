@@ -1,5 +1,0 @@
-CREATE TABLE demo_sl.stocks (
-	store_id INT,
-	product_id INT,
-	quantity INT
-);

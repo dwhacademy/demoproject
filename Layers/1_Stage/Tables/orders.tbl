@@ -6,6 +6,11 @@ CREATE TABLE demo_sl.orders (
 	order_date DATE NOT NULL,
 	required_date DATE,
 	shipped_date DATE,
-	store_id INT NOT NULL,
-	staff_id INT NOT NULL
-);
+	branch_id INT NOT NULL,
+	employee_id INT NOT NULL
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default
+;

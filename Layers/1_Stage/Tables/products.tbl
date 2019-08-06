@@ -5,4 +5,9 @@ CREATE TABLE demo_sl.products (
 	brand_id INT NOT NULL,
 	model_year SMALLINT NOT NULL,
 	list_price DECIMAL (10, 2) NOT NULL
-);
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default
+;

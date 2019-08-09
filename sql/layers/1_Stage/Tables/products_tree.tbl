@@ -1,5 +1,5 @@
 CREATE TABLE demo_sl.products_tree (
-	node_id	INT,
+	node_id	BIGINT,
 	lvl1	VARCHAR(255),
 	lvl2	VARCHAR(255),	
 	lvl3	VARCHAR(255),	

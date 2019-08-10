@@ -1,5 +1,3 @@
--- Create schemas
-
 -- Create tables
 CREATE TABLE IF NOT EXISTS products
 (
@@ -7,9 +5,3 @@ CREATE TABLE IF NOT EXISTS products
     product_name VARCHAR(255),
     PRIMARY KEY(product_id)
 );
-
-
--- Create FKs
-
--- Create Indexes
-

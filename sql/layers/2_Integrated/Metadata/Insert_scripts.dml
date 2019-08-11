@@ -1,0 +1,5 @@
+DELETE FROM demo_il.m002_hier;
+
+--INSERT SCRIPTS
+
+INSERT INTO demo_il.m002_hier(hier_cd, hier_nm) VALUES(1, 'Product_Group');

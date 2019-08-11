@@ -1,17 +1,13 @@
 CREATE TABLE demo_sl.products_tree (
 	node_id	BIGINT,
 	lvl1	VARCHAR(255),
-	lvl2	VARCHAR(255),	
-	lvl3	VARCHAR(255),	
-	lvl4	VARCHAR(255),	
-	lvl5	VARCHAR(255),	
-	lvl6	VARCHAR(255),	
-	lvl7	VARCHAR(255),	
-	lvl8	VARCHAR(255),	
+	lvl2	VARCHAR(255),
+	lvl3	VARCHAR(255),
+	lvl4	VARCHAR(255),
+	lvl5	VARCHAR(255),
+	lvl6	VARCHAR(255),
+	lvl7	VARCHAR(255),
+	lvl8	VARCHAR(255),
 	lvl9	VARCHAR(255)
 )
-WITH (
-    OIDS = FALSE
-)
-TABLESPACE pg_default
 ;

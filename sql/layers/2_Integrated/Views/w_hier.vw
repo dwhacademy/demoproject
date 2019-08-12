@@ -1,4 +1,4 @@
-CREATE OR REPLACE RECURSIVE VIEW demo_al.dim_product_tree(hier_item_id, hier_item_nm, lvl, hier_cd, parent_hier_item_id, mn_id) AS (
+CREATE OR REPLACE RECURSIVE VIEW demo_il.w_hier(hier_item_id, hier_item_nm, lvl, hier_cd, parent_hier_item_id, mn_id) AS (
     SELECT
         m001.hier_item_id, m001.hier_item_nm, m001.lvl, m001.hier_cd, m003_c.parent_hier_item_id, m001.hier_item_id AS mn_id
     FROM
@@ -14,7 +14,7 @@ CREATE OR REPLACE RECURSIVE VIEW demo_al.dim_product_tree(hier_item_id, hier_ite
     SELECT
         BB.hier_item_id, BB.hier_item_nm, BB.lvl, BB.hier_cd, CC.parent_hier_item_id, AA.mn_id
     FROM
-        dim_product_tree AA
+        w_hier AA
         INNER JOIN demo_il.m001_hier_item BB
                 ON AA.parent_hier_item_id = BB.hier_item_id
         INNER JOIN demo_il.m003_hier_item_rltd CC

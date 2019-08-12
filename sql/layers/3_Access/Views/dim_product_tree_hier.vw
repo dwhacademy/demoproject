@@ -51,30 +51,30 @@ CREATE OR REPlACE VIEW demo_al.dim_product_tree_hier (hier_nm, lvl1_id, lvl1_nm 
 			END)    AS lvl6_nm
 	    , MAX(
 			CASE
-				WHEN A.lvl = 6 THEN A.hier_item_id
+				WHEN A.lvl = 7 THEN A.hier_item_id
 			END)    AS lvl7_id
 	    , MAX(
 			CASE
-				WHEN A.lvl = 6 THEN A.hier_item_nm
+				WHEN A.lvl = 7 THEN A.hier_item_nm
 			END)    AS lvl7_nm
 	    , MAX(
 			CASE
-				WHEN A.lvl = 6 THEN A.hier_item_id
+				WHEN A.lvl = 8 THEN A.hier_item_id
 			END)    AS lvl8_id
 	    , MAX(
 			CASE
-				WHEN A.lvl = 6 THEN A.hier_item_nm
+				WHEN A.lvl = 8 THEN A.hier_item_nm
 			END)    AS lvl8_nm
 	    , MAX(
 			CASE
-				WHEN A.lvl = 6 THEN A.hier_item_id
+				WHEN A.lvl = 9 THEN A.hier_item_id
 			END)    AS lvl9_id
 	    , MAX(
 			CASE
-				WHEN A.lvl = 6 THEN A.hier_item_nm
+				WHEN A.lvl = 9 THEN A.hier_item_nm
 			END)    AS lvl9_nm
 	FROM
-	    demo_al.dim_product_tree A
+	    demo_il.w_hier A
 	    INNER JOIN demo_il.m002_hier B
 	            ON A.hier_cd = B.hier_cd
 	GROUP BY

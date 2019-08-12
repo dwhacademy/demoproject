@@ -12,12 +12,12 @@ CREATE OR REPLACE RECURSIVE VIEW demo_il.w_hier(hier_item_id, hier_item_nm, lvl,
         m003_p.parent_hier_item_id IS NULL
     UNION ALL
     SELECT
-        BB.hier_item_id, BB.hier_item_nm, BB.lvl, BB.hier_cd, CC.parent_hier_item_id, AA.mn_id
+        m001.hier_item_id, m001.hier_item_nm, m001.lvl, m001.hier_cd, m003_c.parent_hier_item_id, w.mn_id
     FROM
-        w_hier AA
-        INNER JOIN demo_il.m001_hier_item BB
-                ON AA.parent_hier_item_id = BB.hier_item_id
-        INNER JOIN demo_il.m003_hier_item_rltd CC
-                ON AA.hier_item_id        = CC.child_hier_item_id
+        w_hier w
+        INNER JOIN demo_il.m001_hier_item m001
+                ON w.parent_hier_item_id = m001.hier_item_id
+        INNER JOIN demo_il.m003_hier_item_rltd m003_c
+                ON w.hier_item_id        = m003_c.child_hier_item_id
 )
 ;

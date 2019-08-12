@@ -1,4 +1,4 @@
-create or replace view demo_il.w_002_hier_item as
+create or replace view demo_il.w_001_hier_item as
 
 select
   k001.hier_item_id,

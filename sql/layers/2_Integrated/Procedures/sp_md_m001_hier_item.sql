@@ -11,12 +11,12 @@ insert into
     hier_cd
   )
 select
-  w_002.hier_item_id,
-  w_002.hier_item_nm,
-  w_002.lvl,
-  w_002.hier_cd
+  w_001.hier_item_id,
+  w_001.hier_item_nm,
+  w_001.lvl,
+  w_001.hier_cd
 from
-  demo_il.w_002_hier_item as w_002
+  demo_il.w_001_hier_item as w_001
 
 ;
 END

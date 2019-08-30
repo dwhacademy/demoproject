@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS demo_il.k004_prod_key
+(
+    prod_id BIGINT NOT NULL,
+    prod_src_pfx VARCHAR(1024) NOT NULL,
+    prod_src_key VARCHAR(1024) NOT NULL,
+    src_syst_id INTEGER NOT NULL,
+    PRIMARY KEY(prod_src_pfx, prod_src_key, src_syst_id)
+);

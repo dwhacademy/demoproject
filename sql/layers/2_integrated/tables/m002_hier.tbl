@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS demo_il.m002_hier
+(
+    hier_cd INTEGER NOT NULL,
+    hier_nm VARCHAR(255),
+    PRIMARY KEY(hier_cd)
+);

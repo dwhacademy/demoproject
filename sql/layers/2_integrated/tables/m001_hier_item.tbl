@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS demo_il.m001_hier_item
+(
+    hier_item_id BIGINT NOT NULL,
+    hier_item_nm VARCHAR(255),
+    lvl INTEGER,
+    hier_cd INTEGER,
+    PRIMARY KEY(hier_item_id)
+);

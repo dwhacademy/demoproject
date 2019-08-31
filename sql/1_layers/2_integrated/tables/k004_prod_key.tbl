@@ -1,4 +1,6 @@
-CREATE TABLE IF NOT EXISTS dev_demo_il.k004_prod_key
+DROP TABLE IF EXISTS dev_demo_il.k004_prod_key;
+
+CREATE TABLE dev_demo_il.k004_prod_key
 (
     prod_id BIGINT NOT NULL,
     prod_src_pfx VARCHAR(1024) NOT NULL,

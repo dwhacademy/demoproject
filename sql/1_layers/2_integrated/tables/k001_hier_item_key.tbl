@@ -1,4 +1,6 @@
-CREATE TABLE IF NOT EXISTS dev_demo_il.k001_hier_item_key
+DROP TABLE IF EXISTS dev_demo_il.k001_hier_item_key;
+
+CREATE TABLE dev_demo_il.k001_hier_item_key
 (
     hier_item_id BIGINT NOT NULL,
     hier_item_src_pfx VARCHAR(1024) NOT NULL,

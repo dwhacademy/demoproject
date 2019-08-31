@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS dev_demo_sl.brands;
+
 CREATE TABLE dev_demo_sl.brands (
 	brand_id INT,
 	brand_name VARCHAR (255) NOT NULL

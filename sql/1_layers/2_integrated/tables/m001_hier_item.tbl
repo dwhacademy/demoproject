@@ -1,4 +1,6 @@
-CREATE TABLE IF NOT EXISTS dev_demo_il.m001_hier_item
+DROP TABLE IF EXISTS dev_demo_il.m001_hier_item;
+
+CREATE TABLE dev_demo_il.m001_hier_item
 (
     hier_item_id BIGINT NOT NULL,
     hier_item_nm VARCHAR(255),

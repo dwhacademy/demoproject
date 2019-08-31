@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS dev_demo_sl.branches;
+
 CREATE TABLE dev_demo_sl.branches (
 	branch_id INT,
 	branch_name VARCHAR (255) NOT NULL,

@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS dev_demo_sl.products_tree_unq;
+
 CREATE TABLE dev_demo_sl.products_tree_unq (
 	node_id	BIGINT,
 	lvl1	VARCHAR(255),

@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS dev_demo_sl.customers;
+
 CREATE TABLE dev_demo_sl.customers (
 	customer_id INT,
 	first_name VARCHAR (255) NOT NULL,

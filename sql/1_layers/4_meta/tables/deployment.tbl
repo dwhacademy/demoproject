@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXIST dev_demo_ml.deployment (
+CREATE TABLE IF NOT EXISTS dev_demo_ml.deployment (
 	start_dttm TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	branch_nm VARCHAR (255) NOT NULL,
 	user_nm VARCHAR (255) NOT NULL,

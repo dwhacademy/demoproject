@@ -1,6 +1,6 @@
 pipeline {
   agent {
-        label "linux"
+        label "master"
     }
   stages {
     stage ('Clean workspace and create root folders') {

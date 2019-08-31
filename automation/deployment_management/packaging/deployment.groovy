@@ -13,7 +13,7 @@ pipeline {
     }
     stage ('Checkout repository') {
       steps {
-        checkout([$class: 'GitSCM', branches: [[name: BRANCH_NAME]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'keytruda-prototype'], [$class: 'LocalBranch', localBranch: BRANCH_NAME], [$class: 'CloneOption', depth: 0, honorRefspec: true, noTags: false, reference: '', shallow: true]], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/dwhacademy/demoproject.git', refspec: "+refs/heads/${BRANCH_NAME}:refs/remotes/origin/${BRANCH_NAME}"]]])   
+        checkout([$class: 'GitSCM', branches: [[name: BRANCH_NAME]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'demoproject'], [$class: 'LocalBranch', localBranch: BRANCH_NAME], [$class: 'CloneOption', depth: 0, honorRefspec: true, noTags: false, reference: '', shallow: true]], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/dwhacademy/demoproject.git', refspec: "+refs/heads/${BRANCH_NAME}:refs/remotes/origin/${BRANCH_NAME}"]]])   
       }
     }
     stage ('Copy the packaging script and configuration') {

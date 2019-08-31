@@ -38,7 +38,7 @@ pipeline {
     }
   post {
         success {
-      zip archive: true, dir: '_deployment', glob: '**', zipFile: "deployment_${BRANCH_NAME}_${TARGET_ENVIRONMENT}_${new Date().format("yyyy-MM-dd'T'HH:mm:ss'Z'", TimeZone.getTimeZone("UTC"))}.zip"
+      zip zipFile: "deployment_${BRANCH_NAME}_${TARGET_ENVIRONMENT}_${new Date().format("yyyy-MM-dd'T'HH:mm:ss'Z'", TimeZone.getTimeZone("UTC"))}.zip", archive: true, dir: '_deployment', glob: '**'
         }
     }
 }

@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS CASCADE dev_demo_sl.branches;
+DROP TABLE IF EXISTS dev_demo_sl.branches CASCADE;
 
 CREATE TABLE dev_demo_sl.branches (
 	branch_id INT,

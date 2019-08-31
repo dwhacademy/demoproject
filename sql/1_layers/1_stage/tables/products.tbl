@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS CASCADE dev_demo_sl.products;
+DROP TABLE IF EXISTS dev_demo_sl.products CASCADE;
 
 CREATE TABLE dev_demo_sl.products (
 	product_id INT,

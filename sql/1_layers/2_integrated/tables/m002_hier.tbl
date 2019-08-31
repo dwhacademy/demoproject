@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS CASCADE dev_demo_il.m002_hier;
+DROP TABLE IF EXISTS dev_demo_il.m002_hier CASCADE;
 
 CREATE TABLE dev_demo_il.m002_hier
 (

@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS CASCADE dev_demo_il.k004_prod_key;
+DROP TABLE IF EXISTS dev_demo_il.k004_prod_key CASCADE;
 
 CREATE TABLE dev_demo_il.k004_prod_key
 (

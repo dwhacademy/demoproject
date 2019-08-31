@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS CASCADE dev_demo_sl.products_tree;
+DROP TABLE IF EXISTS dev_demo_sl.products_tree CASCADE;
 
 CREATE TABLE dev_demo_sl.products_tree (
 	node_id	BIGINT,

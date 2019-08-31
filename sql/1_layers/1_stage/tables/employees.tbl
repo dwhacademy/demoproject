@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS CASCADE dev_demo_sl.employees;
+DROP TABLE IF EXISTS dev_demo_sl.employees CASCADE;
 
 CREATE TABLE dev_demo_sl.employees (
 	employee_id INT,

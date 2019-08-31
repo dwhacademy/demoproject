@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS dev_demo_sl.inventory;
+DROP TABLE IF EXISTS CASCADE dev_demo_sl.inventory;
 
 CREATE TABLE dev_demo_sl.inventory (
 	branch_id INT,

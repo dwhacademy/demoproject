@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS dev_demo_sl.order_items;
+DROP TABLE IF EXISTS CASCADE dev_demo_sl.order_items;
 
 CREATE TABLE dev_demo_sl.order_items (
 	order_id INT,

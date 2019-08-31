@@ -1,3 +1,5 @@
+BEGIN TRANSACTION;
+
 CREATE OR REPLACE PROCEDURE dev_demo_ml.sp_deployment_start()
 LANGUAGE plpgsql
 AS $$
@@ -14,3 +16,5 @@ END
 $$;
 
 call dev_demo_ml.sp_deployment_start();
+
+END TRANSACTION;

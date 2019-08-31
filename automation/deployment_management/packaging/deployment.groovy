@@ -31,10 +31,11 @@ pipeline {
         sh "./pack.sh ${TARGET_ENVIRONMENT}"
       }
      }
-
-
-
-
+    stage('Deploy to the database') {
+      steps {
+        sh 'sudo -h localhost -d DWH_ACADEMY -u postgres bash -f _deployment/script/deployment.sql'
+      }
+     }
     }
   post {
         success {

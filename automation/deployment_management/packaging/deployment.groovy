@@ -33,7 +33,7 @@ pipeline {
      }
     stage('Deploy to the database') {
       steps {
-        sh """
+        sh """#!/bin/bash +x
         export PGPASSWORD=${PASSWORD}
         psql -h localhost -d DWH_ACADEMY -U ${USER} -a -w -f _deployment/script/deployment.sql
         """

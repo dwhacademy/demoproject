@@ -1,4 +1,4 @@
-def package_gen_job = this.pipelineJob("deployment") {
+this.pipelineJob("DWH Academy/Demo project/deployment") {
 	concurrentBuild(false)
 	definition {
 		cpsScm {
@@ -29,9 +29,8 @@ def package_gen_job = this.pipelineJob("deployment") {
 		it / definition / lightweight(false)
 	}
 	parameters {
-		choiceParam("TARGET_ENVIRONMENT", ["DEV", "SBX01", "SBX02", "SBX03", "SBX04", "SBX05", "TST", "PROD"])
+		choiceParam("TARGET_ENVIRONMENT", ["DEV", "SBX01", "SBX02", "SBX03", "SBX04", "SBX05", "TST", "PRD"])
 		stringParam("BRANCH_NAME", "develop", "branch name, i.e. develop")
 	}
-}
 }
 

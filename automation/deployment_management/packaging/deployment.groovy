@@ -28,7 +28,7 @@ pipeline {
     stage('Generate the package') {
       steps {
         sh 'chmod 777 ./pack.sh'
-        sh "./pack.sh ${TARGET_ENVIRONMENT}"
+        sh "./pack.sh ${TARGET_ENVIRONMENT} ${BRANCH_NAME} ${USER}"
       }
      }
     stage('Deploy to the database') {

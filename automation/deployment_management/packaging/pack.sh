@@ -3,8 +3,12 @@
 # DB objects packaging tool 
 
 database=${1:-DEV} # first argument of the script, target database, default = DEV
+git_branch_name=$2 # second argument of the script, GIT BRANCH NAME
+db_user_name=$3    # third argument of the script, DEPLOYING USER
 
 echo target database $database
+echo branch name $git_branch_name
+echo user name $db_user_name
 
 declare -A SL # db environment dictionary for SL database
 declare -A IL # db environment dictionary for IL database
@@ -32,7 +36,9 @@ for K in "${!ORDERS[@]}"; do  # loop trough the directories of development repos
     done >> _deployment/script/${DEPLOYMENT[${ORDERS["$K"]}]} # adds new content to the file
     
     # replaces db environment
-    sed -i -e "s/${ML[DEV]}/${ML[$database]}/g; \
+    sed -i -e "s/git_branch_name/$git_branch_name/g; \
+               s/db_user_name/$db_user_name/g; \
+               s/${ML[DEV]}/${ML[$database]}/g; \
                s/${AL[DEV]}/${AL[$database]}/g; \
                s/${IL[DEV]}/${IL[$database]}/g; \
                s/${SL[DEV]}/${SL[$database]}/g" _deployment/script/${DEPLOYMENT[${ORDERS["$K"]}]} 

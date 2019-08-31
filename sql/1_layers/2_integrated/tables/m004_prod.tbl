@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS dev_demo_il.m004_prod
+(
+    prod_id BIGINT NOT NULL,
+    prod_cd INTEGER,
+    prod_nm VARCHAR(255),
+    model_year INTEGER,
+    price DECIMAL(20, 2),
+    PRIMARY KEY(prod_id)
+);

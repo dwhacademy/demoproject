@@ -1,0 +1,10 @@
+CREATE TABLE dev_demo_sl.inventory (
+	branch_id INT,
+	product_id INT,
+	quantity INT
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default
+;

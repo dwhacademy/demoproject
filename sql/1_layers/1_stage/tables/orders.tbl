@@ -1,0 +1,16 @@
+CREATE TABLE dev_demo_sl.orders (
+	order_id INT,
+	customer_id INT,
+	order_status INT NOT NULL,
+	-- Order status: 1 = Pending; 2 = Processing; 3 = Rejected; 4 = Completed
+	order_date DATE NOT NULL,
+	required_date DATE,
+	shipped_date DATE,
+	branch_id INT NOT NULL,
+	employee_id INT NOT NULL
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default
+;

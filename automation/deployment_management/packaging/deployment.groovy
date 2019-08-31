@@ -33,7 +33,7 @@ pipeline {
      }
     stage('Deploy to the database') {
       steps {
-        sh 'sudo -h localhost -d DWH_ACADEMY -u postgres bash -f _deployment/script/deployment.sql'
+        sh 'sudo -u postgres psql -h localhost -d DWH_ACADEMY -f _deployment/script/deployment.sql'
       }
      }
     }

@@ -11,3 +11,5 @@ WHERE
 ;
 END
 $$;
+
+call dev_demo_ml.sp_deployment_end();

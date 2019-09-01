@@ -41,11 +41,7 @@ pipeline {
      }
     stage("Parser") {
       steps {
-      try 
-        { step([$class: 'logParser', failBuildOnError: true, parsingRulesPath: '/var/lib/jenkins/minimal_rules', unstableOnWarning: true, useProjectRule: false]) }
-      catch(all)
-       { print "ERROR: LogParserPublisher failed: \n" +all }
-      }
+        step([$class: 'logParser', failBuildOnError: true, parsingRulesPath: '/var/lib/jenkins/minimal_rules', unstableOnWarning: true, useProjectRule: false]) }
      }
     }
   post {

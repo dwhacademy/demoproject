@@ -13,3 +13,5 @@ END
 $$;
 
 call dev_demo_ml.sp_deployment_end();
+ANALYZE dev_demo_ml.deployment;
+ANALYZE dev_demo_ml.deployment_objects;

@@ -39,9 +39,6 @@ VALUES (
 ;
 END
 $$;
-CALL dev_demo_ml.sp_deployment_objects('sp_deployment_objects', 'dev_demo_ml');
-CALL dev_demo_ml.sp_deployment_objects('deployment_objects', 'dev_demo_ml');
-CALL dev_demo_ml.sp_deployment_objects('deployment', 'dev_demo_ml');
 
 CREATE OR REPLACE PROCEDURE dev_demo_ml.sp_deployment_start()
 LANGUAGE plpgsql
@@ -58,6 +55,9 @@ VALUES (
 END
 $$;
 
+CALL dev_demo_ml.sp_deployment_objects('sp_deployment_objects', 'dev_demo_ml');
+CALL dev_demo_ml.sp_deployment_objects('deployment_objects', 'dev_demo_ml');
+CALL dev_demo_ml.sp_deployment_objects('deployment', 'dev_demo_ml');
 CALL dev_demo_ml.sp_deployment_objects('sp_deployment_start', 'dev_demo_ml');
 call dev_demo_ml.sp_deployment_start();
 

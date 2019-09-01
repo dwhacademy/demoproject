@@ -1,4 +1,4 @@
-Comments only for manual execution, not for usage within jenkins pipeline!
+Comments only for manual execution of pack.sh, not for jenkins job!
 
 Prerequisite: installed Git, clonned demoproject repository and checked out deployment branch (develop)
 * copy pack.config and pack.sh into the directory where you store git repositories (C:\Users\luba\Desktop\git)

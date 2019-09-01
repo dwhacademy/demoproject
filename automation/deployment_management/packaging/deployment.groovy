@@ -45,6 +45,7 @@ pipeline {
           error("SQL errors within deployment")    
         }
       }
+     }
     }
   post {
         success {

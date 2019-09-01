@@ -10,7 +10,7 @@ SELECT
     ,deployment_ID
 FROM
     (SELECT
-        A.object_nam
+        A.object_nm
         ,A.schema_nm
         ,A.object_type
         ,C.branch_nm

@@ -17,7 +17,7 @@ FROM
         ,C.user_nm
         ,B.deployment_dttm
         ,C.deployment_ID
-        ,row_number() over (partition by A.object_nm,A.schema_nm,A.object_type order by C.deployment_ID DESC) as seq
+        ,row_number() over (partition by A.object_nm,A.schema_nm,A.object_type order by COALESCE(C.deployment_ID,0) DESC) as seq
     FROM
         dev_demo_ml.w_database_object A
     LEFT JOIN

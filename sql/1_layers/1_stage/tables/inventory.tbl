@@ -10,6 +10,6 @@ WITH (
     OIDS = FALSE
 )
 TABLESPACE pg_default
-
+;
 CALL dev_demo_ml.sp_deployment_objects('inventory', 'dev_demo_sl');
 END TRANSACTION;

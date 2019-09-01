@@ -4,6 +4,7 @@ create or replace view dev_demo_ml.database_object as
 SELECT
     A.object_nm
     ,A.schema_nm
+    ,A.object_type
     ,C.branch_nm
     ,C.user_nm
     ,B.deployment_dttm

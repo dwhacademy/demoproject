@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS dev_demo_ml.deployment_objects (
 	deployment_dttm TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	object_nm VARCHAR (255) NOT NULL,
 	schema_nm VARCHAR (255) NOT NULL,
-	PRIMARY KEY (dev_demo_ml.deployment,object_nm,schema_nm)
+	PRIMARY KEY (deployment_dttm,object_nm,schema_nm)
 )
 WITH (
     OIDS = FALSE

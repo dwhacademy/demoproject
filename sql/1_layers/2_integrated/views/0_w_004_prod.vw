@@ -1,3 +1,4 @@
+BEGIN TRANSACTION;
 create or replace view dev_demo_il.w_004_prod as
 
 select
@@ -17,3 +18,6 @@ from
 
 group by 1,2,3,4,5,6,7,8
 ;
+CALL dev_demo_ml.sp_deployment_objects('w_004_prod', 'dev_demo_il');
+END TRANSACTION;
+

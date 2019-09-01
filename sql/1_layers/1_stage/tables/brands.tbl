@@ -1,3 +1,4 @@
+BEGIN TRANSACTION;
 DROP TABLE IF EXISTS dev_demo_sl.brands CASCADE;
 
 CREATE TABLE dev_demo_sl.brands (
@@ -9,3 +10,5 @@ WITH (
 )
 TABLESPACE pg_default
 ;
+CALL dev_demo_ml.sp_deployment_objects('brands', 'dev_demo_sl');
+END TRANSACTION;

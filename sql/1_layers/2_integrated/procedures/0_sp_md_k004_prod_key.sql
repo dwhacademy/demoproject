@@ -1,3 +1,4 @@
+BEGIN TRANSACTION;
 CREATE OR REPLACE PROCEDURE dev_demo_il.sp_md_k004_prod_key()
 LANGUAGE plpgsql
 AS $$
@@ -24,3 +25,6 @@ group by w_004.prod_src_pfx, w_004.prod_src_key,  w_004.src_syst_id
 ;
 END
 $$;
+CALL dev_demo_ml.sp_deployment_objects('sp_md_k004_prod_key', 'dev_demo_il');
+END TRANSACTION;
+

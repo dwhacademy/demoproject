@@ -1,3 +1,4 @@
+BEGIN TRANSACTION;
 CREATE OR REPLACE PROCEDURE dev_demo_il.sp_md_m003_hier_item_rltd()
 LANGUAGE plpgsql
 AS $$
@@ -147,3 +148,6 @@ group by 1,2
 ;
 END
 $$;
+CALL dev_demo_ml.sp_deployment_objects('sp_md_m003_hier_item_rltd', 'dev_demo_il');
+END TRANSACTION;
+

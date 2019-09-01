@@ -1,3 +1,4 @@
+BEGIN TRANSACTION;
 DROP TABLE IF EXISTS dev_demo_sl.products_tree_unq CASCADE;
 
 CREATE TABLE dev_demo_sl.products_tree_unq (
@@ -13,3 +14,7 @@ CREATE TABLE dev_demo_sl.products_tree_unq (
 	lvl9	VARCHAR(255)
 )
 ;
+CALL dev_demo_ml.sp_deployment_objects('products_tree_unq', 'dev_demo_sl');
+END TRANSACTION;
+
+

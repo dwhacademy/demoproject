@@ -1,3 +1,4 @@
+BEGIN TRANSACTION;
 DROP TABLE IF EXISTS dev_demo_il.m003_hier_item_rltd CASCADE;
 
 CREATE TABLE dev_demo_il.m003_hier_item_rltd
@@ -6,3 +7,6 @@ CREATE TABLE dev_demo_il.m003_hier_item_rltd
     child_hier_item_id BIGINT NOT NULL UNIQUE,
     PRIMARY KEY(child_hier_item_id)
 );
+CALL dev_demo_ml.sp_deployment_objects('m003_hier_item_rltd', 'dev_demo_il');
+END TRANSACTION;
+

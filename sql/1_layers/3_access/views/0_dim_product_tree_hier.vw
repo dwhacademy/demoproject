@@ -1,3 +1,4 @@
+BEGIN TRANSACTION;
 CREATE OR REPlACE VIEW dev_demo_al.dim_product_tree_hier (hier_nm, prod_id, prod_nm, lvl1_id, lvl1_nm , lvl2_id, lvl2_nm , lvl3_id, lvl3_nm , lvl4_id, lvl4_nm , lvl5_id, lvl5_nm , lvl6_id, lvl6_nm , lvl7_id, lvl7_nm , lvl8_id, lvl8_nm, lvl9_id, lvl9_nm ) AS
 	SElECT
 	      B.hier_nm
@@ -33,3 +34,6 @@ CREATE OR REPlACE VIEW dev_demo_al.dim_product_tree_hier (hier_nm, prod_id, prod
 	GROUP BY
 	    B.hier_nm, A.prod_id, C.prod_nm
 ;
+CALL dev_demo_ml.sp_deployment_objects('dim_product_tree_hier', 'dev_demo_al');
+END TRANSACTION;
+

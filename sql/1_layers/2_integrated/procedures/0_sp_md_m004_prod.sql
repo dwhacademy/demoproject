@@ -1,3 +1,4 @@
+BEGIN TRANSACTION;
 CREATE OR REPLACE PROCEDURE dev_demo_il.sp_md_m004_prod()
 LANGUAGE plpgsql
 AS $$
@@ -23,3 +24,8 @@ from
 ;
 END
 $$;
+
+CALL dev_demo_ml.sp_deployment_objects('sp_md_m004_prod', 'dev_demo_il');
+END TRANSACTION;
+
+

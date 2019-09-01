@@ -1,3 +1,4 @@
+BEGIN TRANSACTION;
 CREATE OR REPLACE PROCEDURE dev_demo_il.sp_md_k001_hier_item_key()
 LANGUAGE plpgsql
 AS $$
@@ -24,3 +25,6 @@ group by w_001.hier_item_src_pfx, w_001.hier_item_src_key,  w_001.src_syst_id
 ;
 END
 $$;
+CALL dev_demo_ml.sp_deployment_objects('sp_md_k001_hier_item_key', 'dev_demo_il');
+END TRANSACTION;
+

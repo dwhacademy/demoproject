@@ -1,3 +1,4 @@
+BEGIN TRANSACTION;
 DROP TABLE IF EXISTS dev_demo_il.k004_prod_key CASCADE;
 
 CREATE TABLE dev_demo_il.k004_prod_key
@@ -8,3 +9,6 @@ CREATE TABLE dev_demo_il.k004_prod_key
     src_syst_id INTEGER NOT NULL,
     PRIMARY KEY(prod_src_pfx, prod_src_key, src_syst_id)
 );
+CALL dev_demo_ml.sp_deployment_objects('k004_prod_key', 'dev_demo_il');
+END TRANSACTION;
+

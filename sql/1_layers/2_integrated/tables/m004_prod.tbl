@@ -1,3 +1,4 @@
+BEGIN TRANSACTION;
 DROP TABLE IF EXISTS dev_demo_il.m004_prod CASCADE;
 
 CREATE TABLE dev_demo_il.m004_prod
@@ -9,3 +10,6 @@ CREATE TABLE dev_demo_il.m004_prod
     price DECIMAL(20, 2),
     PRIMARY KEY(prod_id)
 );
+CALL dev_demo_ml.sp_deployment_objects('m004_prod', 'dev_demo_il');
+END TRANSACTION;
+

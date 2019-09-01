@@ -1,3 +1,4 @@
+BEGIN TRANSACTION;
 create or replace view dev_demo_il.w_001_hier_item as
 
 select
@@ -197,3 +198,6 @@ where
   lvl9 <> 'N/A'
 
 ;
+CALL dev_demo_ml.sp_deployment_objects('w_001_hier_item', 'dev_demo_il');
+END TRANSACTION;
+

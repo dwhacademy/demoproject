@@ -1,3 +1,4 @@
+BEGIN TRANSACTION;
 DROP TABLE IF EXISTS dev_demo_sl.branches CASCADE;
 
 CREATE TABLE dev_demo_sl.branches (
@@ -14,4 +15,7 @@ WITH (
     OIDS = FALSE
 )
 TABLESPACE pg_default;
+
+CALL dev_demo_ml.sp_deployment_objects('branches', 'dev_demo_sl');
+END TRANSACTION;
 

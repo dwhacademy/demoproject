@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 create or replace view dev_demo_ml.database_object as
-SELECT error
+SELECT
     object_nm
     ,schema_nm
     ,object_type

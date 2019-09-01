@@ -39,13 +39,6 @@ pipeline {
         """
       }
      }
-    stage('CheckLog') {
-      steps {
-        if (manager.logContains('.*error.*')) {
-          error("SQL errors within deployment")    
-        }
-      }
-     }
     }
   post {
         success {

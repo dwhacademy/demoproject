@@ -40,7 +40,7 @@ pipeline {
       }
      }
     stage("Parser") {
-      node('master') {
+      steps {
       try 
         { step([$class: 'logParser', failBuildOnError: true, parsingRulesPath: '/var/lib/jenkins/minimal_rules', unstableOnWarning: true, useProjectRule: false]) }
       catch(all)

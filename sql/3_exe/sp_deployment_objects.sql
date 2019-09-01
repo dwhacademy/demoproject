@@ -1,3 +1,4 @@
+BEGIN TRANSACTION;
 CREATE OR REPLACE PROCEDURE dev_demo_ml.sp_deployment_objects(a VARCHAR(255), b VARCHAR(255))
 LANGUAGE plpgsql
 AS $$
@@ -12,3 +13,5 @@ VALUES (
 ;
 END
 $$;
+CALL dev_demo_ml.sp_deployment_objects('sp_deployment_objects', 'dev_demo_ml');
+END TRANSACTION;

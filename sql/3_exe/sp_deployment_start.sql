@@ -16,5 +16,5 @@ END
 $$;
 
 call dev_demo_ml.sp_deployment_start();
-
+CALL dev_demo_ml.sp_deployment_objects('sp_deployment_start', 'dev_demo_ml');
 END TRANSACTION;

@@ -1,3 +1,4 @@
+BEGIN TRANSACTION;
 CREATE TABLE IF NOT EXISTS dev_demo_ml.deployment_objects (
 	deployment_dttm TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	object_nm VARCHAR (255) NOT NULL,
@@ -9,3 +10,5 @@ WITH (
 )
 TABLESPACE pg_default
 ;
+CALL dev_demo_ml.sp_deployment_objects('deployment_objects', 'dev_demo_ml');
+END TRANSACTION;

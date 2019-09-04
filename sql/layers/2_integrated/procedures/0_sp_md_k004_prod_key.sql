@@ -15,9 +15,9 @@ select
   w_004.prod_src_key,
   w_004.src_syst_id --source code for master data
 from
-  demo_il.w_004_prod w_004
+  dev_demo_il.w_004_prod w_004
 cross join
-  (select coalesce(max(prod_id),1000000) as last_sk from demo_il.k004_prod_key) k004
+  (select coalesce(max(prod_id),1000000) as last_sk from dev_demo_il.k004_prod_key) k004
 where
   w_004.prod_id is null
 group by w_004.prod_src_pfx, w_004.prod_src_key,  w_004.src_syst_id, k004.last_sk

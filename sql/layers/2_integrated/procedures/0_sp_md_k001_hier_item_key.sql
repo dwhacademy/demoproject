@@ -15,9 +15,9 @@ select
   w_001.hier_item_src_key,
   w_001.src_syst_id --source code for master data
 from
-  demo_il.w_001_hier_item w_001
+  dev_demo_il.w_001_hier_item w_001
 cross join
-  (select coalesce(max(hier_item_id),1000000) as last_sk from demo_il.k001_hier_item_key) k001
+  (select coalesce(max(hier_item_id),1000000) as last_sk from dev_demo_il.k001_hier_item_key) k001
 where
   w_001.hier_item_id is null
 group by w_001.hier_item_src_pfx, w_001.hier_item_src_key,  w_001.src_syst_id, k001.last_sk

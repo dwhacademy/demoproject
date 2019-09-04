@@ -1,6 +1,0 @@
-CREATE TABLE IF NOT EXISTS demo_il.m003_hier_item_rltd
-(
-    parent_hier_item_id BIGINT NOT NULL,
-    child_hier_item_id BIGINT NOT NULL UNIQUE,
-    PRIMARY KEY(child_hier_item_id)
-);

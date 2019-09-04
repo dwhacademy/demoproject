@@ -1,0 +1,20 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_sl.products_tree_unq CASCADE;
+
+CREATE TABLE dev_demo_sl.products_tree_unq (
+	node_id	BIGINT,
+	lvl1	VARCHAR(255),
+	lvl2	VARCHAR(255),
+	lvl3	VARCHAR(255),
+	lvl4	VARCHAR(255),
+	lvl5	VARCHAR(255),
+	lvl6	VARCHAR(255),
+	lvl7	VARCHAR(255),
+	lvl8	VARCHAR(255),
+	lvl9	VARCHAR(255)
+)
+;
+CALL dev_demo_ml.sp_deployment_objects('products_tree_unq', 'dev_demo_sl');
+END TRANSACTION;
+
+

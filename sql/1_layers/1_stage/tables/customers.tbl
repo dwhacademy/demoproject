@@ -1,0 +1,21 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_sl.customers CASCADE;
+
+CREATE TABLE dev_demo_sl.customers (
+	customer_id INT,
+	first_name VARCHAR (255) NOT NULL,
+	last_name VARCHAR (255) NOT NULL,
+	phone VARCHAR (25),
+	email VARCHAR (255) NOT NULL,
+	street VARCHAR (255),
+	city VARCHAR (50),
+	state VARCHAR (25),
+	zip_code VARCHAR (5)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default
+;
+CALL dev_demo_ml.sp_deployment_objects('customers', 'dev_demo_sl');
+END TRANSACTION;

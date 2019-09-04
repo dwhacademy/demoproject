@@ -1,0 +1,21 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_sl.branches CASCADE;
+
+CREATE TABLE dev_demo_sl.branches (
+	branch_id INT,
+	branch_name VARCHAR (255) NOT NULL,
+	phone VARCHAR (25),
+	email VARCHAR (255),
+	street VARCHAR (255),
+	city VARCHAR (255),
+	state VARCHAR (10),
+	zip_code INT
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+CALL dev_demo_ml.sp_deployment_objects('branches', 'dev_demo_sl');
+END TRANSACTION;
+

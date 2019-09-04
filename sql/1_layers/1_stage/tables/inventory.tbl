@@ -1,0 +1,15 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_sl.inventory CASCADE;
+
+CREATE TABLE dev_demo_sl.inventory (
+	branch_id INT,
+	product_id INT,
+	quantity INT
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default
+;
+CALL dev_demo_ml.sp_deployment_objects('inventory', 'dev_demo_sl');
+END TRANSACTION;

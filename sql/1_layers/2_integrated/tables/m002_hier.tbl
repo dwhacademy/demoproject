@@ -1,0 +1,12 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_il.m002_hier CASCADE;
+
+CREATE TABLE dev_demo_il.m002_hier
+(
+    hier_cd INTEGER NOT NULL,
+    hier_nm VARCHAR(255),
+    PRIMARY KEY(hier_cd)
+);
+CALL dev_demo_ml.sp_deployment_objects('m002_hier', 'dev_demo_il');
+END TRANSACTION;
+

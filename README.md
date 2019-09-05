@@ -1,5 +1,5 @@
 # demoproject
-Branch created to support article "Connecting Products to Hierarchy in 3NF model": https://posts.dwhacademy.com/connecting_products_to_hierarchy/
+Branch created to support article "Hierarchies in 3NF model": https://posts.dwhacademy.com/hierarchies/
 
 DWH demo project documented on the web https://posts.dwhacademy.com
 

@@ -1,4 +1,6 @@
 # demoproject
+Branch created to support article "Hierarchies in 3NF model": https://posts.dwhacademy.com/hierarchies/
+
 DWH demo project documented on the web https://posts.dwhacademy.com
 
 Data warehouse best practices:

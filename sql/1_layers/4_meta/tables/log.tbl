@@ -1,0 +1,21 @@
+BEGIN TRANSACTION;
+
+CREATE TABLE IF NOT EXISTS dev_demo_ml.log (
+    load_id INT,
+    log_ts TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    schema_nm VARCHAR (255),
+    proc_nm VARCHAR (255),
+    targ_tbl_nm VARCHAR (255),
+    step_nm VARCHAR (255),
+    cnt_rows INT,
+    PRIMARY KEY (log_ts)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default
+;
+
+CALL dev_demo_ml.sp_deployment_objects('load', 'dev_demo_ml');
+END TRANSACTION;
+

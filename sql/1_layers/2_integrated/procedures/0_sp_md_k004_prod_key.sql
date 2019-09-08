@@ -3,9 +3,7 @@ CREATE OR REPLACE PROCEDURE dev_demo_il.sp_md_k004_prod_key()
 LANGUAGE plpgsql
 AS $$
 DECLARE V_LOAD_ID INTEGER;
-DECLARE V_INS_CNT INTEGER;
-DECLARE V_UPD_CNT INTEGER;
-DECLARE V_DEL_CNT INTEGER;
+DECLARE V_AFF_CNT INTEGER;
 BEGIN
 SELECT MAX(load_id) into V_LOAD_ID  FROM dev_demo_ml.load; 
 insert into
@@ -32,8 +30,8 @@ group by w_004.prod_src_pfx, w_004.prod_src_key,  w_004.src_syst_id, k004.last_s
 /********************************************
  * LOGGING ACTIVITY
 ********************************************/
-GET DIAGNOSTICS V_INS_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_md_k004_prod_key', 'k004_prod_key','insert', V_INS_CNT);
+GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
+INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_md_k004_prod_key', 'k004_prod_key','insert', V_AFF_CNT);
 END
 $$;
 CALL dev_demo_ml.sp_deployment_objects('sp_md_k004_prod_key', 'dev_demo_il');

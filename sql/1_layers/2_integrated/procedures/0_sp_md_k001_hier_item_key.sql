@@ -3,9 +3,7 @@ CREATE OR REPLACE PROCEDURE dev_demo_il.sp_md_k001_hier_item_key()
 LANGUAGE plpgsql
 AS $$
 DECLARE V_LOAD_ID INTEGER;
-DECLARE V_INS_CNT INTEGER;
-DECLARE V_UPD_CNT INTEGER;
-DECLARE V_DEL_CNT INTEGER;
+DECLARE V_AFF_CNT INTEGER;
 BEGIN
 SELECT MAX(load_id) into V_LOAD_ID  FROM dev_demo_ml.load; 
 insert into
@@ -32,8 +30,8 @@ group by w_001.hier_item_src_pfx, w_001.hier_item_src_key,  w_001.src_syst_id, k
 /********************************************
  * LOGGING ACTIVITY
 ********************************************/
-GET DIAGNOSTICS V_INS_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_md_k001_hier_item_key', 'k001_hier_item_key','insert', V_INS_CNT);
+GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
+INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_md_k001_hier_item_key', 'k001_hier_item_key','insert', V_AFF_CNT);
 
 END
 $$;

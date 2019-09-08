@@ -3,9 +3,7 @@ CREATE OR REPLACE PROCEDURE dev_demo_il.sp_md_m004_prod()
 LANGUAGE plpgsql
 AS $$
 DECLARE V_LOAD_ID INTEGER;
-DECLARE V_INS_CNT INTEGER;
-DECLARE V_UPD_CNT INTEGER;
-DECLARE V_DEL_CNT INTEGER;;
+DECLARE V_AFF_CNT INTEGER;
 BEGIN
 SELECT MAX(load_id) into V_LOAD_ID  FROM dev_demo_ml.load; 
 delete from dev_demo_il.m004_prod;
@@ -13,8 +11,8 @@ delete from dev_demo_il.m004_prod;
 /********************************************
  * LOGGING ACTIVITY
 ********************************************/
-GET DIAGNOSTICS V_DEL_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_md_m004_prod', 'm004_prod','delete', V_DEL_CNT);
+GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
+INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_md_m004_prod', 'm004_prod','delete', V_AFF_CNT);
 insert into
   dev_demo_il.m004_prod (
     prod_id,
@@ -36,8 +34,8 @@ from
 /********************************************
  * LOGGING ACTIVITY
 ********************************************/
-GET DIAGNOSTICS V_INS_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_md_m004_prod', 'm004_prod','insert', V_INS_CNT);
+GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
+INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_md_m004_prod', 'm004_prod','insert', V_AFF_CNT);
 END
 $$;
 

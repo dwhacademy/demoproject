@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS dev_demo_ml.log (
     targ_tbl_nm VARCHAR (255),
     step_nm VARCHAR (255),
     cnt_rows INT,
-    PRIMARY KEY (log_ts)
+    PRIMARY KEY (log_ts,proc_nm,targ_tbl_nm,step_nm)
 )
 WITH (
     OIDS = FALSE

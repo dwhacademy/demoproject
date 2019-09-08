@@ -2,8 +2,17 @@ BEGIN TRANSACTION;
 CREATE OR REPLACE PROCEDURE dev_demo_il.sp_md_m005_hier_item_prod_rltd()
 LANGUAGE plpgsql
 AS $$
+DECLARE V_LOAD_ID INTEGER;
+DECLARE V_UPD_CNT INTEGER;
 BEGIN
+SELECT MAX(load_id) into V_LOAD_ID  FROM dev_demo_ml.load; 
 delete from dev_demo_il.m005_hier_item_prod_rltd;
+
+/********************************************
+ * LOGGING ACTIVITY
+********************************************/
+GET DIAGNOSTICS V_UPD_CNT = ROW_COUNT;
+INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_md_m005_hier_item_prod_rltd', 'm005_hier_item_prod_rltd','delete', V_UPD_CNT);
 insert into
   dev_demo_il.m005_hier_item_prod_rltd (
     hier_item_id,
@@ -177,8 +186,13 @@ from
     on cast(a.product_id as varchar(255)) = k004.prod_src_key
 where
   b.lvl9 <> 'N/A'
-
 ;
+    
+/********************************************
+ * LOGGING ACTIVITY
+********************************************/
+GET DIAGNOSTICS V_UPD_CNT = ROW_COUNT;
+INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_md_m005_hier_item_prod_rltd', 'm005_hier_item_prod_rltd','insert', V_UPD_CNT);
 END
 $$;
 CALL dev_demo_ml.sp_deployment_objects('sp_md_m005_hier_item_prod_rltd', 'dev_demo_il');

@@ -6,15 +6,15 @@ BEGIN
 --update load
 UPDATE 
     dev_demo_ml.load 
+SET 
+    load_end_dttm = current_timestamp,
+    load_status = 'SUCCESS'
 FROM
     (SELECT
     	MAX(load_id) load_id
     FROM 
         dev_demo_ml.load
     ) A
-SET 
-    load_end_dttm = current_timestamp,
-    load_status = 'SUCCESS'
 WHERE 
     dev_demo_ml.load.load_id = A.load_id
 ;

@@ -1,0 +1,12 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_il.m014_order_party_rltd CASCADE;
+
+CREATE TABLE dev_demo_il.m014_order_party_rltd
+(
+    order_id BIGINT NOT NULL,
+    party_id BIGINT NOT NULL,
+    rel_cd INTEGER,
+    PRIMARY KEY(order_id, party_id)
+);
+CALL dev_demo_ml.sp_deployment_objects('m014_order_party_rltd', 'dev_demo_il');
+END TRANSACTION;

@@ -1,0 +1,13 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_il.k016_contact_key CASCADE;
+
+CREATE TABLE dev_demo_il.k016_contact_key
+(
+    contact_id BIGINT NOT NULL,
+    contact_src_pfx VARCHAR(1024) NOT NULL,
+    contact_src_key VARCHAR(1024) NOT NULL,
+    src_syst_id INTEGER NOT NULL,
+    PRIMARY KEY(contact_src_pfx, contact_src_key, src_syst_id)
+);
+CALL dev_demo_ml.sp_deployment_objects('k016_contact_key', 'dev_demo_il');
+END TRANSACTION;

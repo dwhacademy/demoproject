@@ -1,0 +1,16 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_il.m006_party CASCADE;
+
+CREATE TABLE IF NOT EXISTS dev_demo_il.m006_party
+(
+    party_id BIGINT NOT NULL,
+    party_subtype VARCHAR(255),
+    party_cd VARCHAR(255),
+    email VARCHAR(255),
+    phone VARCHAR(255),
+    loc_id BIGINT,
+    PRIMARY KEY(party_id)
+);
+CALL dev_demo_ml.sp_deployment_objects('m006_party', 'dev_demo_il');
+END TRANSACTION;
+

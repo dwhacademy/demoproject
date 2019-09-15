@@ -1,0 +1,15 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_il.m007_party_loc_rltd CASCADE;
+
+CREATE TABLE dev_demo_il.m007_party_loc_rltd
+(
+    party_id BIGINT NOT NULL,
+    loc_id BIGINT NOT NULL,
+    city VARCHAR(255),
+    state VARCHAR(255),
+    zip_cd VARCHAR(255),
+    rel_cd INTEGER,
+    PRIMARY KEY(party_id, loc_id)
+);
+CALL dev_demo_ml.sp_deployment_objects('m007_party_loc_rltd', 'dev_demo_il');
+END TRANSACTION;

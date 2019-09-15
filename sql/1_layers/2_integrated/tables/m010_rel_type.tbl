@@ -1,0 +1,12 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_il.m010_rel_type CASCADE;
+
+CREATE TABLE IF NOT EXISTS dev_demo_il.m010_rel_type
+(
+    rel_cd INTEGER NOT NULL,
+    rel_nm VARCHAR(255),
+    PRIMARY KEY(rel_cd)
+);
+CALL dev_demo_ml.sp_deployment_objects('m010_rel_type', 'dev_demo_il');
+END TRANSACTION;
+

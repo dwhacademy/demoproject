@@ -1,0 +1,13 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_il.k006_party_key CASCADE;
+
+CREATE TABLE IF NOT EXISTS dev_demo_il.k006_party_key
+(
+    party_id BIGINT NOT NULL,
+    party_src_pfx VARCHAR(1024) NOT NULL,
+    party_src_key VARCHAR(1024) NOT NULL,
+    src_syst_id INTEGER NOT NULL,
+    PRIMARY KEY(party_src_pfx, party_src_key, src_syst_id)
+);
+CALL dev_demo_ml.sp_deployment_objects('k006_party_key', 'dev_demo_il');
+END TRANSACTION;

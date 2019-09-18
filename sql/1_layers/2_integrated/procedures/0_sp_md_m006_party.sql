@@ -17,15 +17,13 @@ insert into
   dev_demo_il.m006_party (
     party_id,
     party_subtype,
-    party_cd,
-    loc_id
+    party_cd
   )
 -- Individuals
 select
   w_008.party_id,
   w_008.party_subtype,
-  w_008.party_cd,
-  w_008.loc_id
+  w_008.party_cd
 from
   dev_demo_il.w_008_indiv as w_008
 
@@ -34,8 +32,7 @@ union
 select
   w_009.party_id,
   w_009.party_subtype,
-  w_009.party_cd,
-  w_009.loc_id
+  w_009.party_cd
 from
   dev_demo_il.w_009_org as w_009
 ;

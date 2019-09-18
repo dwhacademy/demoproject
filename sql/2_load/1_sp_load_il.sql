@@ -11,6 +11,10 @@ call dev_demo_il.sp_md_m003_hier_item_rltd();
 call dev_demo_il.sp_md_k004_prod_key();
 call dev_demo_il.sp_md_m004_prod();
 call dev_demo_il.sp_md_m005_hier_item_prod_rltd();
+call dev_demo_il.sp_md_k006_party_key();
+call dev_demo_il.sp_md_m006_party();
+call dev_demo_il.sp_md_m008_indiv();
+call dev_demo_il.sp_md_m009_org();
 
 END
 $$;

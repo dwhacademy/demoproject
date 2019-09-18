@@ -6,7 +6,7 @@ select
     'Organization' as party_subtype,
     a.branch_id as party_cd,
     a.branch_name as org_nm,
-    'Branch' as party_src_pfx,
+    'Organization' as party_src_pfx,
     a.branch_id as party_src_key,
     1 as src_syst_id --source code for master data
 from
@@ -14,7 +14,7 @@ from
     left join
       dev_demo_il.k006_party_key k006
       on cast(a.branch_id as varchar(255)) = k006.party_src_key
-      and k006.party_src_pfx = 'Branch'
+      and k006.party_src_pfx = 'Organization'
 
 group by 1,2,3,4,5,6,7
 

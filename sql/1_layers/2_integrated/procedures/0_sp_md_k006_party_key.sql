@@ -26,8 +26,15 @@ cross join
 where
   w_008.party_id is null
 group by w_008.party_src_pfx, w_008.party_src_key,  w_008.src_syst_id, k006.last_sk
+;
 
-union
+insert into
+  dev_demo_il.k006_party_key (
+    party_id,
+    party_src_pfx,
+    party_src_key,
+    src_syst_id
+  )
 -- SK generation for Organizations
 select
   row_number() over(order by w_009.party_src_key) + k006.last_sk as party_id,

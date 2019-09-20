@@ -12,7 +12,7 @@ from
     dev_demo_sl.branches as a
     left join
       dev_demo_il.k006_party_key k006
-      on cast(a.branch_id as varchar(255)) = k006.party_src_key
+      on a.branch_name = k006.party_src_key
       and k006.party_src_pfx = 'Organization'
 
 group by 1,2,3,4,5,6

@@ -1,7 +1,7 @@
 BEGIN TRANSACTION;
 DROP TABLE IF EXISTS dev_demo_il.m008_indiv CASCADE;
 
-CREATE TABLE IF NOT EXISTS dev_demo_il.m008_indiv
+CREATE TABLE dev_demo_il.m008_indiv
 (
     party_id BIGINT NOT NULL,
     first_nm VARCHAR(255),

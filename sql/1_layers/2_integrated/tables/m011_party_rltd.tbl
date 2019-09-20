@@ -1,7 +1,7 @@
 BEGIN TRANSACTION;
 DROP TABLE IF EXISTS dev_demo_il.m011_party_rltd CASCADE;
 
-CREATE TABLE IF NOT EXISTS dev_demo_il.m011_party_rltd
+CREATE TABLE dev_demo_il.m011_party_rltd
 (
     parent_party_id BIGINT NOT NULL,
     child_party_id BIGINT NOT NULL,

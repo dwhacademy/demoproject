@@ -6,7 +6,7 @@ select
     'Organization' as party_subtype,
     a.branch_name as org_nm,
     'Organization' as party_src_pfx,
-    a.branch_id as party_src_key,
+    a.branch_name as party_src_key,
     1 as src_syst_id --source code for master data
 from
     dev_demo_sl.branches as a

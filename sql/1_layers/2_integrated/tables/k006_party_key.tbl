@@ -1,7 +1,7 @@
 BEGIN TRANSACTION;
 DROP TABLE IF EXISTS dev_demo_il.k006_party_key CASCADE;
 
-CREATE TABLE IF NOT EXISTS dev_demo_il.k006_party_key
+CREATE TABLE dev_demo_il.k006_party_key
 (
     party_id BIGINT NOT NULL,
     party_src_pfx VARCHAR(1024) NOT NULL,

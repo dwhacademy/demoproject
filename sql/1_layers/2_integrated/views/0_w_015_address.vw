@@ -7,7 +7,7 @@ select
     a.street as street,
     a.city as city,
     a.state as state,
-    a.zip_code as zip_cd,
+    cast(a.zip_code as varchar(255)) as zip_cd,
     'Address' as loc_src_pfx,
     a.street||'#'||a.zip_code as loc_src_key,
     1 as src_syst_id --source code for master data
@@ -28,7 +28,7 @@ select
     a.street as street,
     a.city as city,
     a.state as state,
-    a.zip_code as zip_cd,
+    cast(a.zip_code as varchar(255)) as zip_cd,
     'Address' as loc_src_pfx,
     a.street||'#'||a.zip_code as loc_src_key,
     1 as src_syst_id --source code for master data

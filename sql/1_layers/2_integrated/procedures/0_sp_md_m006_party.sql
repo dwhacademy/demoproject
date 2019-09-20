@@ -16,14 +16,12 @@ INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 
 insert into
   dev_demo_il.m006_party (
     party_id,
-    party_subtype,
-    party_cd
+    party_subtype
   )
 -- Individuals
 select
   w_008.party_id,
-  w_008.party_subtype,
-  w_008.party_cd
+  w_008.party_subtype
 from
   dev_demo_il.w_008_indiv as w_008
 
@@ -31,8 +29,7 @@ union
 -- Organizations
 select
   w_009.party_id,
-  w_009.party_subtype,
-  w_009.party_cd
+  w_009.party_subtype
 from
   dev_demo_il.w_009_org as w_009
 ;

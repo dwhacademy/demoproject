@@ -20,6 +20,8 @@ call dev_demo_il.sp_md_k006_party_key();
 call dev_demo_il.sp_md_m006_party();
 call dev_demo_il.sp_md_m008_indiv();
 call dev_demo_il.sp_md_m009_org();
+call dev_demo_il.sp_md_k013_order_key();
+call dev_demo_il.sp_md_m013_order();
 
 END
 $$;

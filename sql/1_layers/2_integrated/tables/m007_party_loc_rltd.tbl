@@ -5,9 +5,6 @@ CREATE TABLE dev_demo_il.m007_party_loc_rltd
 (
     party_id BIGINT NOT NULL,
     loc_id BIGINT NOT NULL,
-    city VARCHAR(255),
-    state VARCHAR(255),
-    zip_cd VARCHAR(255),
     rel_cd INTEGER,
     PRIMARY KEY(party_id, loc_id)
 );

@@ -14,6 +14,8 @@ from
       dev_demo_il.k016_contact_key k016
       on cast(a.phone as varchar(255)) = k016.contact_src_key
       and k016.contact_src_pfx = 'Phone'
+where
+    a.phone is not null 
 
 group by 1,2,3,4,5,6
 
@@ -32,6 +34,8 @@ from
       dev_demo_il.k016_contact_key k016
       on cast(a.phone as varchar(255)) = k016.contact_src_key
       and k016.contact_src_pfx = 'Phone'
+where
+    a.phone is not null 
 
 group by 1,2,3,4,5,6
 
@@ -50,6 +54,8 @@ from
       dev_demo_il.k016_contact_key k016
       on cast(a.phone as varchar(255)) = k016.contact_src_key
       and k016.contact_src_pfx = 'Phone'
+where
+    a.phone is not null 
 
 union
 
@@ -66,6 +72,8 @@ from
       dev_demo_il.k016_contact_key k016
       on cast(a.email as varchar(255)) = k016.contact_src_key
       and k016.contact_src_pfx = 'Email'
+where
+    a.email is not null 
 
 group by 1,2,3,4,5,6
 
@@ -84,6 +92,8 @@ from
       dev_demo_il.k016_contact_key k016
       on cast(a.email as varchar(255)) = k016.contact_src_key
       and k016.contact_src_pfx = 'Email'
+where
+    a.email is not null 
 
 group by 1,2,3,4,5,6
 
@@ -102,6 +112,8 @@ from
       dev_demo_il.k016_contact_key k016
       on cast(a.email as varchar(255)) = k016.contact_src_key
       and k016.contact_src_pfx = 'Email'
+where
+    a.email is not null 
 
 group by 1,2,3,4,5,6
 ;

@@ -14,6 +14,8 @@ call dev_demo_il.sp_md_m005_hier_item_prod_rltd();
 call dev_demo_il.sp_md_k012_loc_key();
 call dev_demo_il.sp_md_m012_loc();
 call dev_demo_il.sp_md_m015_address();
+call dev_demo_il.sp_md_k016_contact_key();
+call dev_demo_il.sp_md_m016_contact();
 call dev_demo_il.sp_md_k006_party_key();
 call dev_demo_il.sp_md_m006_party();
 call dev_demo_il.sp_md_m008_indiv();

@@ -28,8 +28,8 @@ select
   w_013.order_start_dttm,
   w_013.order_due_dttm,
   w_013.order_complete_dttm,
-  w_013.status,
-  
+  w_013.status
+
 from
   dev_demo_il.w_013_order as w_013
 ;

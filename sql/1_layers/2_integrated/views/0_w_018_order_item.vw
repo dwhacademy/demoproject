@@ -4,8 +4,6 @@ create or replace view dev_demo_il.w_018_order_item as
 select
     k013.order_id as order_id,
     k004.prod_id as prod_id,
-    k013.order_id as order_id,
-    k004.prod_id as prod_id,
     sum(a.quantity) as quantity,
     cast(avg(a.list_price) as decimal(20,2)) as price,
     cast(sum(a.discount*a.quantity)/sum(a.quantity) as decimal(20,2)) as discount

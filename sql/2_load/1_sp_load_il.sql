@@ -23,6 +23,7 @@ call dev_demo_il.sp_md_m009_org();
 call dev_demo_il.sp_md_m010_rel_type();
 call dev_demo_il.sp_md_k013_order_key();
 call dev_demo_il.sp_md_m013_order();
+call dev_demo_il.sp_md_m018_order_item();
 call dev_demo_il.sp_md_m007_party_loc_rltd();
 call dev_demo_il.sp_md_m017_party_contact_rltd();
 call dev_demo_il.sp_md_m011_party_rltd();

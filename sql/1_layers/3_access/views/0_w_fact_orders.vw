@@ -12,7 +12,7 @@ select
     m013.order_complete_dttm as order_complete_dttm,
     m013.status as order_status,
     m018.discount as discount,
-    m018.price*m018.quantity as order_amount
+    sum(m018.price*m018.quantity) as order_amount
 from
     dev_demo_il.m018_order_item as m018
     inner join
@@ -31,6 +31,7 @@ from
       on m013.order_id = m014_s.order_id
       and m014_s.rel_cd = 7 --Order - Branch
 
+group by 1,2,3,4,5,6,7,8,9,10
 ;
 CALL dev_demo_ml.sp_deployment_objects('w_fact_orders', 'dev_demo_al');
 END TRANSACTION;

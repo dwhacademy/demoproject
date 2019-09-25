@@ -1,0 +1,20 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_al.fact_orders CASCADE;
+
+CREATE TABLE dev_demo_al.fact_orders
+(
+    prod_id BIGINT NOT NULL,
+    order_id BIGINT NOT NULL,
+    employee_id BIGINT NOT NULL,
+    order_complete_dttm TIMESTAMP,
+    order_amount DECIMAL(20, 2),
+    order_due_dttm TIMESTAMP,
+    order_status VARCHAR(255),
+    customer_id BIGINT NOT NULL,
+    store_id BIGINT NOT NULL,
+    discount DECIMAL(20, 2),
+    order_start_dttm TIMESTAMP,
+    PRIMARY KEY(prod_id, order_id)
+);
+CALL dev_demo_ml.sp_deployment_objects('fact_orders', 'dev_demo_al');
+END TRANSACTION;

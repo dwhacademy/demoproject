@@ -12,9 +12,9 @@ delete from dev_demo_al.customer;
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_al', 'sp_dim_customer', 'customer','delete', V_AFF_CNT);
+INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_al', 'sp_dim_customer', 'dim_customer','delete', V_AFF_CNT);
 insert into
-  dev_demo_al.customer (
+  dev_demo_al.dim_customer (
     customer_id,
     customer_nm,
     phone,
@@ -37,7 +37,7 @@ from
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_al', 'sp_dim_customer', 'customer','insert', V_AFF_CNT);
+INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_al', 'sp_dim_customer', 'dim_customer','insert', V_AFF_CNT);
 END
 $$;
 

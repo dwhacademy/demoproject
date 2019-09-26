@@ -6,7 +6,7 @@ DECLARE V_LOAD_ID INTEGER;
 DECLARE V_AFF_CNT INTEGER;
 BEGIN
 SELECT MAX(load_id) into V_LOAD_ID  FROM dev_demo_ml.load; 
-delete from dev_demo_al.customer;
+delete from dev_demo_al.dim_customer;
 
 /********************************************
  * LOGGING ACTIVITY

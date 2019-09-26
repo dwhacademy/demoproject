@@ -1,13 +1,11 @@
 BEGIN TRANSACTION;
-create or replace view dev_demo_al.w_dim_customer as
+create or replace view dev_demo_al.w_dim_employee as
 
 select
-    m006.party_id as customer_id,
-    m008.first_nm||' '||m008.last_nm as customer_nm,
+    m006.party_id as employee_id,
+    m008.first_nm||' '||m008.last_nm as employee_nm,
     coalesce(m017_p.contact_txt, '-1') as phone,
-    coalesce(m017_e.contact_txt, '-1') as email,
-    coalesce(m015.city, '-1') as city,
-    coalesce(m015.state, '-1') as state
+    coalesce(m017_e.contact_txt, '-1') as email
 from
     dev_demo_il.m006_party as m006
     inner join
@@ -16,7 +14,7 @@ from
     inner join
       (select party_id, rel_cd from dev_demo_il.m014_order_party_rltd group by 1,2) m014 
       on m006.party_id = m014.party_id
-      and m014.rel_cd = 6 --Order - Customer
+      and m014.rel_cd = 5 --Order - Employee
     left join
         (select party_id, contact_txt 
         from 
@@ -41,18 +39,8 @@ from
               m017.rel_cd = 2 --Party - Contact
         ) m017_e
           on m006.party_id = m017_e.party_id
-    left join
-      dev_demo_il.m007_party_loc_rltd m007
-      on m006.party_id = m007.party_id
-      and m007.rel_cd = 1 --Party - Address
-    left join
-      dev_demo_il.m012_loc m012
-      on m007.loc_id = m012.loc_id
-    left join
-      dev_demo_il.m015_address m015
-      on m012.loc_id = m015.loc_id
 
 ;
-CALL dev_demo_ml.sp_deployment_objects('w_dim_customer', 'dev_demo_al');
+CALL dev_demo_ml.sp_deployment_objects('w_dim_employee', 'dev_demo_al');
 END TRANSACTION;
 

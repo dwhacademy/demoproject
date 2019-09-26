@@ -5,6 +5,7 @@ AS $$
 BEGIN
 
 call dev_demo_al.sp_dim_customer();
+call dev_demo_al.sp_dim_employee();
 call dev_demo_al.sp_fact_orders();
 
 

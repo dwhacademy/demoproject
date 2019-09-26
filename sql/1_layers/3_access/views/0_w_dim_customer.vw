@@ -14,7 +14,7 @@ from
       dev_demo_il.m008_indiv m008
       on m006.party_id = m008.party_id
     inner join
-      dev_demo_il.m014_order_party_rltd m014 
+      (select party_id, rel_cd from dev_demo_il.m014_order_party_rltd group by 1,2) m014 
       on m006.party_id = m014.party_id
       and m014.rel_cd = 6 --Order - Customer
     left join

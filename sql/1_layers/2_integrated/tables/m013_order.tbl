@@ -1,0 +1,15 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_il.m013_order CASCADE;
+
+CREATE TABLE dev_demo_il.m013_order
+(
+    order_id BIGINT NOT NULL,
+    order_cd VARCHAR(255),
+    order_start_dttm TIMESTAMP,
+    order_due_dttm TIMESTAMP,
+    order_complete_dttm TIMESTAMP,
+    status VARCHAR(255),
+    PRIMARY KEY(order_id)
+);
+CALL dev_demo_ml.sp_deployment_objects('m013_order', 'dev_demo_il');
+END TRANSACTION;

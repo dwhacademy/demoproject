@@ -1,0 +1,12 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_il.m009_org CASCADE;
+
+CREATE TABLE dev_demo_il.m009_org
+(
+    party_id BIGINT NOT NULL,
+    org_nm VARCHAR(255),
+    PRIMARY KEY(party_id)
+);
+CALL dev_demo_ml.sp_deployment_objects('m009_org', 'dev_demo_il');
+END TRANSACTION;
+

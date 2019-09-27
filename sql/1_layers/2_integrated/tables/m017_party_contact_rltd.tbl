@@ -1,0 +1,14 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_il.m017_party_contact_rltd CASCADE;
+
+CREATE TABLE dev_demo_il.m017_party_contact_rltd
+(
+    party_id BIGINT NOT NULL,
+    relation_nm VARCHAR(255),
+    contact_id BIGINT NOT NULL,
+    phone VARCHAR(255),
+    rel_cd INTEGER,
+    PRIMARY KEY(party_id, contact_id)
+);
+CALL dev_demo_ml.sp_deployment_objects('m017_party_contact_rltd', 'dev_demo_il');
+END TRANSACTION;

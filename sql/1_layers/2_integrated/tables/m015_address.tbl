@@ -1,0 +1,14 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_il.m015_address CASCADE;
+
+CREATE TABLE dev_demo_il.m015_address
+(
+    loc_id BIGINT NOT NULL,
+    street VARCHAR(255),
+    city VARCHAR(255),
+    state VARCHAR(255),
+    zip_cd VARCHAR(255),
+    PRIMARY KEY(loc_id)
+);
+CALL dev_demo_ml.sp_deployment_objects('m015_address', 'dev_demo_il');
+END TRANSACTION;

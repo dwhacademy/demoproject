@@ -1,5 +1,5 @@
 BEGIN TRANSACTION;
-CREATE OR REPLACE PROCEDURE dev_demo_il.sp_md_m018_order_item()
+CREATE OR REPLACE PROCEDURE dev_demo_il.sp_erp_m018_order_item()
 LANGUAGE plpgsql
 AS $$
 DECLARE V_LOAD_ID INTEGER;
@@ -12,7 +12,7 @@ delete from dev_demo_il.m018_order_item;
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_md_m018_order_item', 'm018_order_item','delete', V_AFF_CNT);
+INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_erp_m018_order_item', 'm018_order_item','delete', V_AFF_CNT);
 insert into
   dev_demo_il.m018_order_item (
     order_id,
@@ -35,11 +35,11 @@ from
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_md_m018_order_item', 'm018_order_item','insert', V_AFF_CNT);
+INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_erp_m018_order_item', 'm018_order_item','insert', V_AFF_CNT);
 END
 $$;
 
-CALL dev_demo_ml.sp_deployment_objects('sp_md_m018_order_item', 'dev_demo_il');
+CALL dev_demo_ml.sp_deployment_objects('sp_erp_m018_order_item', 'dev_demo_il');
 END TRANSACTION;
 
 

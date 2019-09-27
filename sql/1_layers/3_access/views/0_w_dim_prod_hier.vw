@@ -1,5 +1,5 @@
 BEGIN TRANSACTION;
-create or replace view dev_demo_al.dim_prod_hier as
+create or replace view dev_demo_al.w_dim_prod_hier as
 	
 select
 	    hier.prod_id as prod_id
@@ -29,6 +29,6 @@ select
 	    hier.prod_id, m004.prod_nm, m004.price, m004.model_year
 ;
 
-CALL dev_demo_ml.sp_deployment_objects('dim_prod_hier', 'dev_demo_al');
+CALL dev_demo_ml.sp_deployment_objects('w_dim_prod_hier', 'dev_demo_al');
 END TRANSACTION;
 

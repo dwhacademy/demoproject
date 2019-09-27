@@ -4,6 +4,7 @@ LANGUAGE plpgsql
 AS $$
 BEGIN
 
+call dev_demo_al.sp_dim_prod_hier();
 call dev_demo_al.sp_dim_customer();
 call dev_demo_al.sp_dim_employee();
 call dev_demo_al.sp_dim_store();

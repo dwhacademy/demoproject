@@ -3,9 +3,9 @@ create or replace view dev_demo_al.w_dim_prod_hier as
 	
 select
 	    hier.prod_id as prod_id
-	    , m004.prod_nm as prod_nm
-	    , m004.price as price
-	    , m004.model_year as model_year
+	    , a004.prod_nm as prod_nm
+	    , a004.price as price
+	    , a004.model_year as model_year
 	    , MAX(CASE WHEN hier.lvl = 1 THEN hier.hier_item_nm END)    AS lvl1_nm
 	    , MAX(CASE WHEN hier.lvl = 2 THEN hier.hier_item_nm END)    AS lvl2_nm
 	    , MAX(CASE WHEN hier.lvl = 3 THEN hier.hier_item_nm END)    AS lvl3_nm
@@ -18,15 +18,15 @@ select
 	from
 	  dev_demo_il.w_hier hier
 	  inner join
-	    dev_demo_il.m002_hier m002
-	    on hier.hier_cd = m002.hier_cd
-	    and m002.hier_nm = 'Product_Group'
+	    dev_demo_il.a002_hier a002
+	    on hier.hier_cd = a002.hier_cd
+	    and a002.hier_nm = 'Product_Group'
 	  inner join
-	    dev_demo_il.m004_prod m004
-	    on hier.prod_id = m004.prod_id
+	    dev_demo_il.a004_prod a004
+	    on hier.prod_id = a004.prod_id
 
 	group by
-	    hier.prod_id, m004.prod_nm, m004.price, m004.model_year
+	    hier.prod_id, a004.prod_nm, a004.price, a004.model_year
 ;
 
 CALL dev_demo_ml.sp_deployment_objects('w_dim_prod_hier', 'dev_demo_al');

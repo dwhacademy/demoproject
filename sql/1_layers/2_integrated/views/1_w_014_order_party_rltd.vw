@@ -4,7 +4,7 @@ create or replace view dev_demo_il.w_014_order_party_rltd as
 select
     k013.order_id as order_id,
     k006.party_id as party_id,
-    m010.rel_cd as rel_cd
+    v010.rel_cd as rel_cd
 from
     dev_demo_sl.orders as a
     inner join
@@ -18,8 +18,8 @@ from
       on b.first_name||'#'||b.last_name = k006.party_src_key
       and k006.party_src_pfx = 'Individual'
     inner join
-      dev_demo_il.m010_rel_type m010
-      on m010.rel_nm = 'Order - Employee'
+      dev_demo_il.v010_rel_type v010
+      on v010.rel_nm = 'Order - Employee'
 
 group by 1,2,3
 
@@ -28,7 +28,7 @@ union
 select
     k013.order_id as order_id,
     k006.party_id as party_id,
-    m010.rel_cd as rel_cd
+    v010.rel_cd as rel_cd
 from
     dev_demo_sl.orders as a
     inner join
@@ -42,8 +42,8 @@ from
       on b.first_name||'#'||b.last_name = k006.party_src_key
       and k006.party_src_pfx = 'Individual'
     inner join
-      dev_demo_il.m010_rel_type m010
-      on m010.rel_nm = 'Order - Customer'
+      dev_demo_il.v010_rel_type v010
+      on v010.rel_nm = 'Order - Customer'
 
 group by 1,2,3
 
@@ -52,7 +52,7 @@ union
 select
     k013.order_id as order_id,
     k006.party_id as party_id,
-    m010.rel_cd as rel_cd
+    v010.rel_cd as rel_cd
 from
     dev_demo_sl.orders as a
     inner join
@@ -66,8 +66,8 @@ from
       on b.branch_name = k006.party_src_key
       and k006.party_src_pfx = 'Organization'
     inner join
-      dev_demo_il.m010_rel_type m010
-      on m010.rel_nm = 'Order - Branch'
+      dev_demo_il.v010_rel_type v010
+      on v010.rel_nm = 'Order - Branch'
 
 group by 1,2,3
 ;

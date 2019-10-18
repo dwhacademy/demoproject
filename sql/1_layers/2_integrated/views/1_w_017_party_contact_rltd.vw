@@ -4,7 +4,7 @@ create or replace view dev_demo_il.w_017_party_contact_rltd as
 select
     k006.party_id as party_id,
     k016.contact_id as contact_id,
-    m010.rel_cd as rel_cd
+    v010.rel_cd as rel_cd
 from
     dev_demo_sl.branches as a
     inner join
@@ -16,8 +16,8 @@ from
       on cast(a.phone as varchar(255)) = k016.contact_src_key
       and k016.contact_src_pfx = 'Phone'
     inner join
-      dev_demo_il.m010_rel_type m010
-      on m010.rel_nm = 'Party - Contact'
+      dev_demo_il.v010_rel_type v010
+      on v010.rel_nm = 'Party - Contact'
 
 group by 1,2,3
 
@@ -26,7 +26,7 @@ union
 select
     k006.party_id as party_id,
     k016.contact_id as contact_id,
-    m010.rel_cd as rel_cd
+    v010.rel_cd as rel_cd
 from
     dev_demo_sl.branches as a
     inner join
@@ -38,8 +38,8 @@ from
       on cast(a.email as varchar(255)) = k016.contact_src_key
       and k016.contact_src_pfx = 'Email'
     inner join
-      dev_demo_il.m010_rel_type m010
-      on m010.rel_nm = 'Party - Contact'
+      dev_demo_il.v010_rel_type v010
+      on v010.rel_nm = 'Party - Contact'
 
 group by 1,2,3
 
@@ -48,7 +48,7 @@ union
 select
     k006.party_id as party_id,
     k016.contact_id as contact_id,
-    m010.rel_cd as rel_cd
+    v010.rel_cd as rel_cd
 from
     dev_demo_sl.customers as a
     inner join
@@ -60,8 +60,8 @@ from
       on cast(a.phone as varchar(255)) = k016.contact_src_key
       and k016.contact_src_pfx = 'Phone'
     inner join
-      dev_demo_il.m010_rel_type m010
-      on m010.rel_nm = 'Party - Contact'
+      dev_demo_il.v010_rel_type v010
+      on v010.rel_nm = 'Party - Contact'
 
 group by 1,2,3
 
@@ -70,7 +70,7 @@ union
 select
     k006.party_id as party_id,
     k016.contact_id as contact_id,
-    m010.rel_cd as rel_cd
+    v010.rel_cd as rel_cd
 from
     dev_demo_sl.customers as a
     inner join
@@ -82,8 +82,8 @@ from
       on cast(a.email as varchar(255)) = k016.contact_src_key
       and k016.contact_src_pfx = 'Email'
     inner join
-      dev_demo_il.m010_rel_type m010
-      on m010.rel_nm = 'Party - Contact'
+      dev_demo_il.v010_rel_type v010
+      on v010.rel_nm = 'Party - Contact'
 
 group by 1,2,3
 
@@ -92,7 +92,7 @@ union
 select
     k006.party_id as party_id,
     k016.contact_id as contact_id,
-    m010.rel_cd as rel_cd
+    v010.rel_cd as rel_cd
 from
     dev_demo_sl.employees as a
     inner join
@@ -104,8 +104,8 @@ from
       on cast(a.phone as varchar(255)) = k016.contact_src_key
       and k016.contact_src_pfx = 'Phone'
     inner join
-      dev_demo_il.m010_rel_type m010
-      on m010.rel_nm = 'Party - Contact'
+      dev_demo_il.v010_rel_type v010
+      on v010.rel_nm = 'Party - Contact'
 
 group by 1,2,3
 
@@ -114,7 +114,7 @@ union
 select
     k006.party_id as party_id,
     k016.contact_id as contact_id,
-    m010.rel_cd as rel_cd
+    v010.rel_cd as rel_cd
 from
     dev_demo_sl.employees as a
     inner join
@@ -126,8 +126,8 @@ from
       on cast(a.email as varchar(255)) = k016.contact_src_key
       and k016.contact_src_pfx = 'Email'
     inner join
-      dev_demo_il.m010_rel_type m010
-      on m010.rel_nm = 'Party - Contact'
+      dev_demo_il.v010_rel_type v010
+      on v010.rel_nm = 'Party - Contact'
 
 group by 1,2,3
 

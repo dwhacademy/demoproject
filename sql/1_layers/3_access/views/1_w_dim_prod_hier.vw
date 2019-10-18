@@ -18,11 +18,11 @@ select
 	from
 	  dev_demo_il.w_hier hier
 	  inner join
-	    dev_demo_il.a002_hier a002
+	    dev_demo_al.a002_hier a002
 	    on hier.hier_cd = a002.hier_cd
 	    and a002.hier_nm = 'Product_Group'
 	  inner join
-	    dev_demo_il.a004_prod a004
+	    dev_demo_al.a004_prod a004
 	    on hier.prod_id = a004.prod_id
 
 	group by

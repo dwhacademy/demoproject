@@ -1,0 +1,20 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_il.t016_contact CASCADE;
+ 
+CREATE TABLE dev_demo_il.t016_contact
+(
+    contact_id BIGINT NOT NULL,
+    contact_type VARCHAR(255) ,
+    contact_txt VARCHAR(255) ,
+    contact_src_pfx VARCHAR(1024) NOT NULL,
+    contact_src_key VARCHAR(1024) NOT NULL,
+    src_syst_id INTEGER NOT NULL,
+PRIMARY KEY
+(
+    contact_src_pfx
+    , contact_src_key
+    , src_syst_id
+)
+);
+CALL dev_demo_ml.sp_deployment_objects('t016_contact','dev_demo_il');
+END TRANSACTION;

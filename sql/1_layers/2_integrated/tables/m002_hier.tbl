@@ -5,8 +5,6 @@ CREATE TABLE dev_demo_il.m002_hier
 (
     hier_cd INTEGER NOT NULL,
     hier_nm VARCHAR(255),
-    dw_start_dttm TIMESTAMP,
-    dw_end_dttm TIMESTAMP,
     PRIMARY KEY(hier_cd)
 );
 CALL dev_demo_ml.sp_deployment_objects('m002_hier', 'dev_demo_il');

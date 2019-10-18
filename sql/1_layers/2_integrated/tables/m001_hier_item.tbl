@@ -7,6 +7,8 @@ CREATE TABLE dev_demo_il.m001_hier_item
     hier_item_nm VARCHAR(255),
     lvl INTEGER,
     hier_cd INTEGER,
+    dw_start_dttm TIMESTAMP,
+    dw_end_dttm TIMESTAMP,
     PRIMARY KEY(hier_item_id)
 );
 CALL dev_demo_ml.sp_deployment_objects('m001_hier_item', 'dev_demo_il');

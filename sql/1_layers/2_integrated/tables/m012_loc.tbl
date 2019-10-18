@@ -5,6 +5,8 @@ CREATE TABLE dev_demo_il.m012_loc
 (
     loc_id BIGINT NOT NULL,
     loc_subtype VARCHAR(255),
+    dw_start_dttm TIMESTAMP,
+    dw_end_dttm TIMESTAMP,
     PRIMARY KEY(loc_id)
 );
 CALL dev_demo_ml.sp_deployment_objects('m012_loc', 'dev_demo_il');

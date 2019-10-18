@@ -8,6 +8,8 @@ CREATE TABLE dev_demo_il.m004_prod
     prod_nm VARCHAR(255),
     model_year INTEGER,
     price DECIMAL(20, 2),
+    dw_start_dttm TIMESTAMP,
+    dw_end_dttm TIMESTAMP,
     PRIMARY KEY(prod_id)
 );
 CALL dev_demo_ml.sp_deployment_objects('m004_prod', 'dev_demo_il');

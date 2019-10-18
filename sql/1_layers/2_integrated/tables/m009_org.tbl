@@ -5,6 +5,8 @@ CREATE TABLE dev_demo_il.m009_org
 (
     party_id BIGINT NOT NULL,
     org_nm VARCHAR(255),
+    dw_start_dttm TIMESTAMP,
+    dw_end_dttm TIMESTAMP,
     PRIMARY KEY(party_id)
 );
 CALL dev_demo_ml.sp_deployment_objects('m009_org', 'dev_demo_il');

@@ -6,6 +6,8 @@ CREATE TABLE dev_demo_il.m007_party_loc_rltd
     party_id BIGINT NOT NULL,
     loc_id BIGINT NOT NULL,
     rel_cd INTEGER,
+    dw_start_dttm TIMESTAMP,
+    dw_end_dttm TIMESTAMP,
     PRIMARY KEY(party_id, loc_id)
 );
 CALL dev_demo_ml.sp_deployment_objects('m007_party_loc_rltd', 'dev_demo_il');

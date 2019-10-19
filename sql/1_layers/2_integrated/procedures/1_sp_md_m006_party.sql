@@ -2,19 +2,12 @@ BEGIN TRANSACTION;
 CREATE OR REPLACE PROCEDURE dev_demo_il.sp_md_m006_party()
 LANGUAGE plpgsql
 AS $$
-DECLARE V_LOAD_ID INTEGER;
-DECLARE V_AFF_CNT INTEGER;
 BEGIN
-SELECT MAX(load_id) into V_LOAD_ID  FROM dev_demo_ml.load; 
-delete from dev_demo_il.m006_party;
-
 /********************************************
- * LOGGING ACTIVITY
+ * MOVING DATA INTO TEMP TABLE
 ********************************************/
-GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_md_m006_party', 'm006_party','delete', V_AFF_CNT);
 insert into
-  dev_demo_il.m006_party (
+  dev_demo_il.t006_party (
     party_id,
     party_subtype
   )
@@ -35,10 +28,10 @@ from
 ;
   
 /********************************************
- * LOGGING ACTIVITY
+ * HISTORIZE TARGET TABLE
 ********************************************/
-GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_md_m006_party', 'm006_party','insert', V_AFF_CNT);
+CALL dev_demo_il.sp_m006_party_hist('sp_md_m006_party');
+
 END
 $$;
 

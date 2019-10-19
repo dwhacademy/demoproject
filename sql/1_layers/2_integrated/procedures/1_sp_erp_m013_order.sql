@@ -2,19 +2,12 @@ BEGIN TRANSACTION;
 CREATE OR REPLACE PROCEDURE dev_demo_il.sp_erp_m013_order()
 LANGUAGE plpgsql
 AS $$
-DECLARE V_LOAD_ID INTEGER;
-DECLARE V_AFF_CNT INTEGER;
 BEGIN
-SELECT MAX(load_id) into V_LOAD_ID  FROM dev_demo_ml.load; 
-delete from dev_demo_il.m013_order;
-
 /********************************************
- * LOGGING ACTIVITY
+ * MOVING DATA INTO TEMP TABLE
 ********************************************/
-GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_erp_m013_order', 'm013_order','delete', V_AFF_CNT);
 insert into
-  dev_demo_il.m013_order (
+  dev_demo_il.t013_order (
     order_id,
     order_cd,
     order_start_dttm,
@@ -35,10 +28,10 @@ from
 ;
   
 /********************************************
- * LOGGING ACTIVITY
+ * HISTORIZE TARGET TABLE
 ********************************************/
-GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_erp_m013_order', 'm013_order','insert', V_AFF_CNT);
+CALL dev_demo_il.sp_m013_order_hist('sp_erp_m013_order');
+
 END
 $$;
 

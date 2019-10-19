@@ -2,8 +2,6 @@ BEGIN TRANSACTION;
 CREATE OR REPLACE PROCEDURE dev_demo_il.sp_md_m008_indiv()
 LANGUAGE plpgsql
 AS $$
-DECLARE V_LOAD_ID INTEGER;
-DECLARE V_AFF_CNT INTEGER;
 BEGIN
 /********************************************
  * MOVING DATA INTO TEMP TABLE
@@ -27,7 +25,7 @@ from
 /********************************************
  * HISTORIZE TARGET TABLE
 ********************************************/
-CALL dev_demo_il.sp_m008_indiv_hist('sp_md_m008_indiv')
+CALL dev_demo_il.sp_m008_indiv_hist('sp_md_m008_indiv');
 
 END
 $$;

@@ -2,19 +2,12 @@ BEGIN TRANSACTION;
 CREATE OR REPLACE PROCEDURE dev_demo_il.sp_md_m015_address()
 LANGUAGE plpgsql
 AS $$
-DECLARE V_LOAD_ID INTEGER;
-DECLARE V_AFF_CNT INTEGER;
 BEGIN
-SELECT MAX(load_id) into V_LOAD_ID  FROM dev_demo_ml.load; 
-delete from dev_demo_il.m015_address;
-
 /********************************************
- * LOGGING ACTIVITY
+ * MOVING DATA INTO TEMP TABLE
 ********************************************/
-GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_md_m015_address', 'm015_address','delete', V_AFF_CNT);
 insert into
-  dev_demo_il.m015_address (
+  dev_demo_il.t015_address (
     loc_id,
     street,
     city,
@@ -32,10 +25,10 @@ from
 ;
   
 /********************************************
- * LOGGING ACTIVITY
+ * HISTORIZE TARGET TABLE
 ********************************************/
-GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_md_m015_address', 'm015_address','insert', V_AFF_CNT);
+CALL dev_demo_il.sp_m015_address_hist('sp_md_m015_address');
+
 END
 $$;
 

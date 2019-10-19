@@ -5,16 +5,11 @@ AS $$
 DECLARE V_LOAD_ID INTEGER;
 DECLARE V_AFF_CNT INTEGER;
 BEGIN
-SELECT MAX(load_id) into V_LOAD_ID  FROM dev_demo_ml.load; 
-delete from dev_demo_il.m008_indiv;
-
 /********************************************
- * LOGGING ACTIVITY
+ * MOVING DATA INTO TEMP TABLE
 ********************************************/
-GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_md_m008_indiv', 'm008_indiv','delete', V_AFF_CNT);
 insert into
-  dev_demo_il.m008_indiv (
+  dev_demo_il.t008_indiv (
     party_id,
     first_nm,
     last_nm,
@@ -30,10 +25,10 @@ from
 ;
   
 /********************************************
- * LOGGING ACTIVITY
+ * HISTORIZE TARGET TABLE
 ********************************************/
-GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_il', 'sp_md_m008_indiv', 'm008_indiv','insert', V_AFF_CNT);
+CALL dev_demo_il.sp_m008_indiv_hist('sp_md_m008_indiv')
+
 END
 $$;
 

@@ -6,6 +6,8 @@ BEGIN
 /********************************************
  * MOVING DATA INTO TEMP TABLE
 ********************************************/
+delete from
+  dev_demo_il.t013_order;
 insert into
   dev_demo_il.t013_order (
     order_id,

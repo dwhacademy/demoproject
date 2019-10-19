@@ -6,6 +6,8 @@ BEGIN
 /********************************************
  * MOVING DATA INTO TEMP TABLE
 ********************************************/
+delete from
+  dev_demo_il.t012_loc;
 insert into
   dev_demo_il.t012_loc (
     loc_id,

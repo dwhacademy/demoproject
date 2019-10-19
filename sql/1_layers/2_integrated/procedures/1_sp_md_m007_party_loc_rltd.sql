@@ -6,6 +6,8 @@ BEGIN
 /********************************************
  * MOVING DATA INTO TEMP TABLE
 ********************************************/
+delete from
+  dev_demo_il.t007_party_loc_rltd;
 insert into
   dev_demo_il.t007_party_loc_rltd (
     party_id,

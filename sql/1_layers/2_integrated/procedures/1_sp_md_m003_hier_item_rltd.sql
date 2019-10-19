@@ -6,6 +6,8 @@ BEGIN
 /********************************************
  * MOVING DATA INTO TEMP TABLE
 ********************************************/
+delete from
+  dev_demo_il.t003_hier_item_rltd;
 insert into
   dev_demo_il.t003_hier_item_rltd (
     parent_hier_item_id,

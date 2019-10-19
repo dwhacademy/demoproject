@@ -1,0 +1,19 @@
+BEGIN TRANSACTION;
+
+CREATE TABLE IF NOT EXISTS dev_demo_ml.load_stat (
+	load_id INT,
+    proc_nm VARCHAR (255),
+    ts TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    layer_nm VARCHAR (255),
+	load_status VARCHAR (255),
+	PRIMARY KEY (load_id,proc_nm)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default
+;
+
+CALL dev_demo_ml.sp_deployment_objects('load_stat', 'dev_demo_ml');
+END TRANSACTION;
+

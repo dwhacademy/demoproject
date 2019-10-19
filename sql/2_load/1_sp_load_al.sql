@@ -7,14 +7,14 @@ DECLARE Status VARCHAR(255) DEFAULT 'Success';
 BEGIN
 
 -- LOAD INIT.
-SET Status = 'Success';
+Status := 'Success';
 SELECT COALESCE(MAX(load_id)+1,100000) into Load_ID  FROM dev_demo_ml.load_stat WHERE proc_nm = 'LOAD_INIT'; 
 INSERT INTO dev_demo_ml.load_stat VALUES(Load_ID, 'LOAD_INIT', CURRENT_TIMESTAMP, 'AL', Status);
 
 BEGIN
   call dev_demo_al.sp_dim_prod_hier();
 EXCEPTION WHEN OTHERS THEN
-  SET Status = 'Failure';
+  Status := 'Failure';
 END;
 
 

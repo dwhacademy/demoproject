@@ -14,7 +14,7 @@ INSERT INTO dev_demo_ml.load_stat VALUES(Load_ID, 'LOAD_INIT', CURRENT_TIMESTAMP
 BEGIN
   call dev_demo_al.sp_dim_prod_hier();
 EXCEPTION WHEN OTHERS THEN
-  Status = 'Failure';
+  SET Status = 'Failure';
 END;
 
 

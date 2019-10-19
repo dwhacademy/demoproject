@@ -8,7 +8,7 @@ CREATE TABLE dev_demo_il.m011_party_rltd
     rel_cd INTEGER,
     dw_start_dttm TIMESTAMP,
     dw_end_dttm TIMESTAMP,
-    PRIMARY KEY(parent_party_id, child_party_id)
+    PRIMARY KEY(parent_party_id, child_party_id, dw_end_dttm)
 );
 CALL dev_demo_ml.sp_deployment_objects('m011_party_rltd', 'dev_demo_il');
 END TRANSACTION;

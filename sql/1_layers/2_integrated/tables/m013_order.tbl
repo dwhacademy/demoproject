@@ -11,7 +11,7 @@ CREATE TABLE dev_demo_il.m013_order
     status VARCHAR(255),
     dw_start_dttm TIMESTAMP,
     dw_end_dttm TIMESTAMP,
-    PRIMARY KEY(order_id)
+    PRIMARY KEY(order_id, dw_end_dttm)
 );
 CALL dev_demo_ml.sp_deployment_objects('m013_order', 'dev_demo_il');
 END TRANSACTION;

@@ -10,7 +10,7 @@ CREATE TABLE dev_demo_il.m017_party_contact_rltd
     rel_cd INTEGER,
     dw_start_dttm TIMESTAMP,
     dw_end_dttm TIMESTAMP,
-    PRIMARY KEY(party_id, contact_id)
+    PRIMARY KEY(party_id, contact_id, dw_end_dttm)
 );
 CALL dev_demo_ml.sp_deployment_objects('m017_party_contact_rltd', 'dev_demo_il');
 END TRANSACTION;

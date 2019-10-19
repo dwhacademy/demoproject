@@ -7,14 +7,12 @@ LANGUAGE plpgsql
 AS $$
 DECLARE V_LOAD_ID INTEGER;
 DECLARE V_AFF_CNT INTEGER;
-DECLARE V_TARG_TBL_NM VARCHAR(255);
-DECLARE V_SCHEMA_NM VARCHAR(255);
+DECLARE V_TARG_TBL_NM VARCHAR(255) := 'm008_indiv';
+DECLARE V_SCHEMA_NM VARCHAR(255) := 'dev_demo_il';
 BEGIN
 /********************************************
  * SET PROCEDURE CONSTANTS
 ********************************************/
-SET V_TARG_TBL_NM = 'm008_indiv';
-SET V_SCHEMA_NM = 'dev_demo_il';
 SELECT MAX(load_id) into V_LOAD_ID  FROM dev_demo_ml.load;
  
 /********************************************

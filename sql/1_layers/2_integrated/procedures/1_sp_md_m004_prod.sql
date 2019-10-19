@@ -12,14 +12,20 @@ insert into
     prod_cd,
     prod_nm,
     model_year,
-    price
+    price,
+    prod_src_pfx,
+    prod_src_key,
+    src_syst_id
   )
 select
   w_004.prod_id,
   w_004.prod_cd,
   w_004.prod_nm,
   w_004.model_year,
-  w_004.price
+  w_004.price,
+  w_004.prod_src_pfx,
+  w_004.prod_src_key,
+  w_004.src_syst_id
 from
   dev_demo_il.w_004_prod as w_004
 ;

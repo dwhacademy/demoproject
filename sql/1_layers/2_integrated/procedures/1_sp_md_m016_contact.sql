@@ -10,12 +10,18 @@ insert into
   dev_demo_il.t016_contact (
     contact_id,
     contact_type,
-    contact_txt
+    contact_txt,
+    contact_src_pfx,
+    contact_src_key,
+    src_syst_id
   )
 select
   w_016.contact_id,
   w_016.contact_type,
-  w_016.contact_txt
+  w_016.contact_txt,
+  w_016.contact_src_pfx,
+  w_016.contact_src_key,
+  w_016.src_syst_id
 from
   dev_demo_il.w_016_contact as w_016
 ;

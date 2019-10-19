@@ -13,7 +13,10 @@ insert into
     order_start_dttm,
     order_due_dttm,
     order_complete_dttm,
-    status
+    status,
+    order_src_pfx,
+    order_src_key,
+    src_syst_id
   )
 select
   w_013.order_id,
@@ -21,7 +24,10 @@ select
   w_013.order_start_dttm,
   w_013.order_due_dttm,
   w_013.order_complete_dttm,
-  w_013.status
+  w_013.status,
+  w_013.order_src_pfx,
+  w_013.order_src_key,
+  w_013.src_syst_id
 
 from
   dev_demo_il.w_013_order as w_013

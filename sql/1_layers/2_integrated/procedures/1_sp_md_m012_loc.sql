@@ -9,11 +9,17 @@ BEGIN
 insert into
   dev_demo_il.t012_loc (
     loc_id,
-    loc_subtype
+    loc_subtype,
+    loc_src_pfx,
+    loc_src_key,
+    src_syst_id
   )
 select
   w_015.loc_id,
-  w_015.loc_subtype
+  w_015.loc_subtype,
+  w_015.loc_src_pfx,
+  w_015.loc_src_key,
+  w_015.src_syst_id
 from
   dev_demo_il.w_015_address as w_015
 ;

@@ -8,12 +8,61 @@ AS $$
 DECLARE V_LOAD_ID INTEGER;
 DECLARE V_AFF_CNT INTEGER;
 DECLARE V_TARG_TBL_NM VARCHAR(255) := 'm001_hier_item';
+DECLARE V_KEY_TBL_NM VARCHAR(255) := 'k001_hier_item_key';
 DECLARE V_SCHEMA_NM VARCHAR(255) := 'dev_demo_il';
 BEGIN
 /********************************************
  * SET PROCEDURE CONSTANTS
 ********************************************/
 SELECT MAX(load_id) into V_LOAD_ID  FROM dev_demo_ml.load;
+ 
+/********************************************
+ * SURROGATE KEY GENERATION
+*********************************************/
+insert into
+    dev_demo_il.k001_hier_item_key (
+    hier_item_id
+    , hier_item_src_pfx
+    , hier_item_src_key
+    , src_syst_id
+  )
+SELECT
+    row_number() over(order by t001.hier_item_src_key) + k001.last_sk as hier_item_id
+    , t001.hier_item_src_pfx
+    , t001.hier_item_src_key
+    , t001.src_syst_id
+FROM
+  dev_demo_il.t001_hier_item t001
+CROSS JOIN
+    (select coalesce(max(hier_item_id),1000000) as last_sk from dev_demo_il.k001_hier_item_key) k001
+WHERE
+    t001.hier_item_id is null
+GROUP BY
+    t001.hier_item_src_pfx,
+    t001.hier_item_src_key,
+    t001.src_syst_id,
+    k001.last_sk
+;
+ 
+/********************************************
+ * LOGGING ACTIVITY
+********************************************/
+GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
+INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, V_SCHEMA_NM, PROC_NM, V_KEY_TBL_NM,'insert', V_AFF_CNT);
+ 
+/********************************************
+ * MERGING SURROGATE KEYS BACK TO TEMP TABLE
+********************************************/
+UPDATE dev_demo_il.t001_hier_item t001
+SET hier_item_id = k001.hier_item_id
+FROM
+    dev_demo_il.k001_hier_item_key k001
+WHERE
+    k001.hier_item_src_pfx = t001.hier_item_src_pfx AND
+    k001.hier_item_src_key = t001.hier_item_src_key AND
+    k001.src_syst_id = t001.src_syst_id AND
+    t001.hier_item_id is null
+;
  
 /********************************************
  * UPDATE STATEMENT TO BE EXECUTED

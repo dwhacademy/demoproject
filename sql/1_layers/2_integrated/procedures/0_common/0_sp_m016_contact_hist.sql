@@ -8,12 +8,61 @@ AS $$
 DECLARE V_LOAD_ID INTEGER;
 DECLARE V_AFF_CNT INTEGER;
 DECLARE V_TARG_TBL_NM VARCHAR(255) := 'm016_contact';
+DECLARE V_KEY_TBL_NM VARCHAR(255) := 'k016_contact_key';
 DECLARE V_SCHEMA_NM VARCHAR(255) := 'dev_demo_il';
 BEGIN
 /********************************************
  * SET PROCEDURE CONSTANTS
 ********************************************/
 SELECT MAX(load_id) into V_LOAD_ID  FROM dev_demo_ml.load;
+ 
+/********************************************
+ * SURROGATE KEY GENERATION
+*********************************************/
+insert into
+    dev_demo_il.k016_contact_key (
+    contact_id
+    , contact_src_pfx
+    , contact_src_key
+    , src_syst_id
+  )
+SELECT
+    row_number() over(order by t016.contact_src_key) + k016.last_sk as contact_id
+    , t016.contact_src_pfx
+    , t016.contact_src_key
+    , t016.src_syst_id
+FROM
+  dev_demo_il.t016_contact t016
+CROSS JOIN
+    (select coalesce(max(contact_id),1000000) as last_sk from dev_demo_il.k016_contact_key) k016
+WHERE
+    t016.contact_id is null
+GROUP BY
+    t016.contact_src_pfx,
+    t016.contact_src_key,
+    t016.src_syst_id,
+    k016.last_sk
+;
+ 
+/********************************************
+ * LOGGING ACTIVITY
+********************************************/
+GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
+INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, V_SCHEMA_NM, PROC_NM, V_KEY_TBL_NM,'insert', V_AFF_CNT);
+ 
+/********************************************
+ * MERGING SURROGATE KEYS BACK TO TEMP TABLE
+********************************************/
+UPDATE dev_demo_il.t016_contact t016
+SET contact_id = k016.contact_id
+FROM
+    dev_demo_il.k016_contact_key k016
+WHERE
+    k016.contact_src_pfx = t016.contact_src_pfx AND
+    k016.contact_src_key = t016.contact_src_key AND
+    k016.src_syst_id = t016.src_syst_id AND
+    t016.contact_id is null
+;
  
 /********************************************
  * UPDATE STATEMENT TO BE EXECUTED

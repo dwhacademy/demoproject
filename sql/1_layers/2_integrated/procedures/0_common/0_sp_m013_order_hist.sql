@@ -8,12 +8,61 @@ AS $$
 DECLARE V_LOAD_ID INTEGER;
 DECLARE V_AFF_CNT INTEGER;
 DECLARE V_TARG_TBL_NM VARCHAR(255) := 'm013_order';
+DECLARE V_KEY_TBL_NM VARCHAR(255) := 'k013_order_key';
 DECLARE V_SCHEMA_NM VARCHAR(255) := 'dev_demo_il';
 BEGIN
 /********************************************
  * SET PROCEDURE CONSTANTS
 ********************************************/
 SELECT MAX(load_id) into V_LOAD_ID  FROM dev_demo_ml.load;
+ 
+/********************************************
+ * SURROGATE KEY GENERATION
+*********************************************/
+insert into
+    dev_demo_il.k013_order_key (
+    order_id
+    , order_src_pfx
+    , order_src_key
+    , src_syst_id
+  )
+SELECT
+    row_number() over(order by t013.order_src_key) + k013.last_sk as order_id
+    , t013.order_src_pfx
+    , t013.order_src_key
+    , t013.src_syst_id
+FROM
+  dev_demo_il.t013_order t013
+CROSS JOIN
+    (select coalesce(max(order_id),1000000) as last_sk from dev_demo_il.k013_order_key) k013
+WHERE
+    t013.order_id is null
+GROUP BY
+    t013.order_src_pfx,
+    t013.order_src_key,
+    t013.src_syst_id,
+    k013.last_sk
+;
+ 
+/********************************************
+ * LOGGING ACTIVITY
+********************************************/
+GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
+INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, V_SCHEMA_NM, PROC_NM, V_KEY_TBL_NM,'insert', V_AFF_CNT);
+ 
+/********************************************
+ * MERGING SURROGATE KEYS BACK TO TEMP TABLE
+********************************************/
+UPDATE dev_demo_il.t013_order t013
+SET order_id = k013.order_id
+FROM
+    dev_demo_il.k013_order_key k013
+WHERE
+    k013.order_src_pfx = t013.order_src_pfx AND
+    k013.order_src_key = t013.order_src_key AND
+    k013.src_syst_id = t013.src_syst_id AND
+    t013.order_id is null
+;
  
 /********************************************
  * UPDATE STATEMENT TO BE EXECUTED

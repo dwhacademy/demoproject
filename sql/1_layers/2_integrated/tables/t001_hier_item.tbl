@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS dev_demo_il.t001_hier_item CASCADE;
  
 CREATE TABLE dev_demo_il.t001_hier_item
 (
-    hier_item_id BIGINT NOT NULL,
+    hier_item_id BIGINT,
     hier_item_nm VARCHAR(255) ,
     lvl INTEGER ,
     hier_cd INTEGER ,

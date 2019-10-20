@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS dev_demo_il.t016_contact CASCADE;
  
 CREATE TABLE dev_demo_il.t016_contact
 (
-    contact_id BIGINT NOT NULL,
+    contact_id BIGINT ,
     contact_type VARCHAR(255) ,
     contact_txt VARCHAR(255) ,
     contact_src_pfx VARCHAR(1024) NOT NULL,

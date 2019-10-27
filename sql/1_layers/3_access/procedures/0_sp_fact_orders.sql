@@ -15,7 +15,7 @@ delete from dev_demo_al.fact_orders;
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_al', 'sp_fact_orders', 'fact_orders',STEP_NM, V_AFF_CNT);
+INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_fact_orders', CURRENT_TIMESTAMP, 'AL', 'fact_orders',STEP_NM, V_AFF_CNT);
 
 STEP_NM := 'insert';
 insert into
@@ -52,7 +52,7 @@ from
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_al', 'sp_fact_orders', 'fact_orders',STEP_NM, V_AFF_CNT);
+INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_fact_orders', CURRENT_TIMESTAMP, 'AL', 'fact_orders',STEP_NM, V_AFF_CNT);
 
 EXCEPTION WHEN OTHERS THEN
     STATUS := 'Failure';

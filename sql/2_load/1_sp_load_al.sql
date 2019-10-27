@@ -18,6 +18,25 @@ INSERT INTO dev_demo_ml.load_stat VALUES(V_Load_ID, 'LOAD_INIT', CURRENT_TIMESTA
 call dev_demo_al.sp_dim_prod_hier(Status, Step, SQL_Error, SQL_State);
 INSERT INTO dev_demo_ml.load_stat VALUES(V_Load_ID, 'sp_dim_prod_hier', CURRENT_TIMESTAMP, Step, SQL_Error, SQL_State, 'AL', Status);
 
+-- sp_dim_customer
+call dev_demo_al.sp_dim_customer(Status, Step, SQL_Error, SQL_State);
+INSERT INTO dev_demo_ml.load_stat VALUES(V_Load_ID, 'sp_dim_customer', CURRENT_TIMESTAMP, Step, SQL_Error, SQL_State, 'AL', Status);
+
+-- sp_dim_employee
+call dev_demo_al.sp_dim_employee(Status, Step, SQL_Error, SQL_State);
+INSERT INTO dev_demo_ml.load_stat VALUES(V_Load_ID, 'sp_dim_employee', CURRENT_TIMESTAMP, Step, SQL_Error, SQL_State, 'AL', Status);
+
+-- sp_dim_store
+call dev_demo_al.sp_dim_store(Status, Step, SQL_Error, SQL_State);
+INSERT INTO dev_demo_ml.load_stat VALUES(V_Load_ID, 'sp_dim_store', CURRENT_TIMESTAMP, Step, SQL_Error, SQL_State, 'AL', Status);
+
+-- sp_fact_orders
+call dev_demo_al.sp_fact_orders(Status, Step, SQL_Error, SQL_State);
+INSERT INTO dev_demo_ml.load_stat VALUES(V_Load_ID, 'sp_fact_orders', CURRENT_TIMESTAMP, Step, SQL_Error, SQL_State, 'AL', Status);
+
+-- LOAD FINAL.
+Status := 'Success';
+INSERT INTO dev_demo_ml.load_stat VALUES(V_Load_ID, 'LOAD_FINAL', CURRENT_TIMESTAMP, NULL, NULL, NULL, 'AL', Status);
 
 
 END

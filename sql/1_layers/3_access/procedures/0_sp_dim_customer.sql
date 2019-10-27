@@ -1,10 +1,13 @@
 BEGIN TRANSACTION;
-CREATE OR REPLACE PROCEDURE dev_demo_al.sp_dim_customer()
+CREATE OR REPLACE PROCEDURE dev_demo_al.sp_dim_customer(INOUT STATUS VARCHAR(50), INOUT STEP_NM VARCHAR(50), INOUT V_SQLERRM VARCHAR(50), INOUT V_SQLSTATE VARCHAR(50))
 LANGUAGE plpgsql
 AS $$
 DECLARE V_LOAD_ID INTEGER;
 DECLARE V_AFF_CNT INTEGER;
+
 BEGIN
+STATUS := 'Success';
+STEP_NM := 'delete';
 SELECT MAX(load_id) into V_LOAD_ID  FROM dev_demo_ml.load; 
 delete from dev_demo_al.dim_customer;
 
@@ -12,7 +15,9 @@ delete from dev_demo_al.dim_customer;
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_al', 'sp_dim_customer', 'dim_customer','delete', V_AFF_CNT);
+INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_al', 'sp_dim_customer', 'dim_customer',STEP_NM, V_AFF_CNT);
+
+STEP_NM := 'insert';
 insert into
   dev_demo_al.dim_customer (
     customer_id,
@@ -37,7 +42,12 @@ from
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_al', 'sp_dim_customer', 'dim_customer','insert', V_AFF_CNT);
+INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, 'dev_demo_al', 'sp_dim_customer', 'dim_customer',STEP_NM, V_AFF_CNT);
+
+EXCEPTION WHEN OTHERS THEN
+    STATUS := 'Failure';
+    V_SQLERRM := SQLERRM;
+    V_SQLSTATE := SQLSTATE;
 END
 $$;
 

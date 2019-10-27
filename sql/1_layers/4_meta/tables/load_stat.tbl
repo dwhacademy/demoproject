@@ -1,5 +1,5 @@
 BEGIN TRANSACTION;
-DROP TABLE IF EXISTS dev_demo_ml.load_stat;
+
 CREATE TABLE IF NOT EXISTS dev_demo_ml.load_stat (
 	load_id INT,
     proc_nm VARCHAR (255),

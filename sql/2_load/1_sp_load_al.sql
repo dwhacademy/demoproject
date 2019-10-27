@@ -15,23 +15,23 @@ SELECT COALESCE(MAX(load_id)+1,100000) into V_Load_ID  FROM dev_demo_ml.load_sta
 INSERT INTO dev_demo_ml.load_stat VALUES(V_Load_ID, 'LOAD_INIT', CURRENT_TIMESTAMP, Step, SQL_Error, SQL_State, 'AL', Status);
 
 -- sp_dim_prod_hier
-call dev_demo_al.sp_dim_prod_hier(Status, Step, SQL_Error, SQL_State);
+call dev_demo_al.sp_dim_prod_hier(V_Load_ID, Status, Step, SQL_Error, SQL_State);
 INSERT INTO dev_demo_ml.load_stat VALUES(V_Load_ID, 'sp_dim_prod_hier', CURRENT_TIMESTAMP, Step, SQL_Error, SQL_State, 'AL', Status);
 
 -- sp_dim_customer
-call dev_demo_al.sp_dim_customer(Status, Step, SQL_Error, SQL_State);
+call dev_demo_al.sp_dim_customer(V_Load_ID, Status, Step, SQL_Error, SQL_State);
 INSERT INTO dev_demo_ml.load_stat VALUES(V_Load_ID, 'sp_dim_customer', CURRENT_TIMESTAMP, Step, SQL_Error, SQL_State, 'AL', Status);
 
 -- sp_dim_employee
-call dev_demo_al.sp_dim_employee(Status, Step, SQL_Error, SQL_State);
+call dev_demo_al.sp_dim_employee(V_Load_ID, Status, Step, SQL_Error, SQL_State);
 INSERT INTO dev_demo_ml.load_stat VALUES(V_Load_ID, 'sp_dim_employee', CURRENT_TIMESTAMP, Step, SQL_Error, SQL_State, 'AL', Status);
 
 -- sp_dim_store
-call dev_demo_al.sp_dim_store(Status, Step, SQL_Error, SQL_State);
+call dev_demo_al.sp_dim_store(V_Load_ID, Status, Step, SQL_Error, SQL_State);
 INSERT INTO dev_demo_ml.load_stat VALUES(V_Load_ID, 'sp_dim_store', CURRENT_TIMESTAMP, Step, SQL_Error, SQL_State, 'AL', Status);
 
 -- sp_fact_orders
-call dev_demo_al.sp_fact_orders(Status, Step, SQL_Error, SQL_State);
+call dev_demo_al.sp_fact_orders(V_Load_ID, Status, Step, SQL_Error, SQL_State);
 INSERT INTO dev_demo_ml.load_stat VALUES(V_Load_ID, 'sp_fact_orders', CURRENT_TIMESTAMP, Step, SQL_Error, SQL_State, 'AL', Status);
 
 -- LOAD FINAL.

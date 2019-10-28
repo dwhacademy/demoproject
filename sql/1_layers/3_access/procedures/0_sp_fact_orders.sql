@@ -7,17 +7,17 @@ DECLARE V_AFF_CNT INTEGER;
 BEGIN
 STATUS := 'Success';
 STEP_NM := 'delete';
-delete from dev_demo_al.fact_orders;
+DELETE FROM dev_demo_al.t_fact_orders WHERE load_id < COALESCE((SELECT MAX(load_id) FROM dev_demo_al.t_fact_orders),0); 
 
 /********************************************
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_fact_orders', CURRENT_TIMESTAMP, 'AL', 'fact_orders',STEP_NM, V_AFF_CNT);
+INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_fact_orders', CURRENT_TIMESTAMP, 'AL', 't_fact_orders',STEP_NM, V_AFF_CNT);
 
 STEP_NM := 'insert';
 insert into
-  dev_demo_al.fact_orders (
+  dev_demo_al.t_fact_orders (
     prod_id,
     order_id,
     customer_id,
@@ -52,7 +52,7 @@ from
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_fact_orders', CURRENT_TIMESTAMP, 'AL', 'fact_orders',STEP_NM, V_AFF_CNT);
+INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_fact_orders', CURRENT_TIMESTAMP, 'AL', 't_fact_orders',STEP_NM, V_AFF_CNT);
 
 EXCEPTION WHEN OTHERS THEN
     STATUS := 'Failure';

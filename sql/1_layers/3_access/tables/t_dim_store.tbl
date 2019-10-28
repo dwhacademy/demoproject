@@ -1,7 +1,7 @@
 BEGIN TRANSACTION;
-DROP TABLE IF EXISTS dev_demo_al.dim_store CASCADE;
+DROP TABLE IF EXISTS dev_demo_al.t_dim_store CASCADE;
 
-CREATE TABLE dev_demo_al.dim_store
+CREATE TABLE dev_demo_al.t_dim_store
 (
     store_id BIGINT NOT NULL,
     store_nm VARCHAR(255),
@@ -12,5 +12,5 @@ CREATE TABLE dev_demo_al.dim_store
     load_id INT,
     PRIMARY KEY(store_id,load_id)
 );
-CALL dev_demo_ml.sp_deployment_objects('dim_store', 'dev_demo_al');
+CALL dev_demo_ml.sp_deployment_objects('t_dim_store', 'dev_demo_al');
 END TRANSACTION;

@@ -1,7 +1,7 @@
 BEGIN TRANSACTION;
-DROP TABLE IF EXISTS dev_demo_al.dim_employee CASCADE;
+DROP TABLE IF EXISTS dev_demo_al.t_dim_employee CASCADE;
 
-CREATE TABLE dev_demo_al.dim_employee
+CREATE TABLE dev_demo_al.t_dim_employee
 (
     employee_id BIGINT NOT NULL,
     employee_nm VARCHAR(255),
@@ -10,5 +10,5 @@ CREATE TABLE dev_demo_al.dim_employee
     load_id INT,
     PRIMARY KEY(employee_id,load_id)
 );
-CALL dev_demo_ml.sp_deployment_objects('dim_employee', 'dev_demo_al');
+CALL dev_demo_ml.sp_deployment_objects('t_dim_employee', 'dev_demo_al');
 END TRANSACTION;

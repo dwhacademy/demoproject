@@ -7,17 +7,17 @@ DECLARE V_AFF_CNT INTEGER;
 BEGIN
 STATUS := 'Success';
 STEP_NM := 'delete'; 
-delete from dev_demo_al.dim_store;
+DELETE FROM dev_demo_al.t_dim_store WHERE load_id < COALESCE((SELECT MAX(load_id) FROM dev_demo_al.t_dim_store),0); 
 
 /********************************************
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_dim_store', CURRENT_TIMESTAMP, 'AL', 'dim_store',STEP_NM, V_AFF_CNT);
+INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_dim_store', CURRENT_TIMESTAMP, 'AL', 't_dim_store',STEP_NM, V_AFF_CNT);
 
 STEP_NM := 'insert';
 insert into
-  dev_demo_al.dim_store (
+  dev_demo_al.t_dim_store (
     store_id,
     store_nm,
     phone,
@@ -42,7 +42,7 @@ from
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_dim_store', CURRENT_TIMESTAMP, 'AL', 'dim_store',STEP_NM, V_AFF_CNT);
+INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_dim_store', CURRENT_TIMESTAMP, 'AL', 't_dim_store',STEP_NM, V_AFF_CNT);
 
 EXCEPTION WHEN OTHERS THEN
     STATUS := 'Failure';

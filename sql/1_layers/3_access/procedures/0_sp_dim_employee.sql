@@ -7,17 +7,17 @@ DECLARE V_AFF_CNT INTEGER;
 BEGIN
 STATUS := 'Success';
 STEP_NM := 'delete';
-delete from dev_demo_al.dim_employee;
+DELETE FROM dev_demo_al.t_dim_employee WHERE load_id < COALESCE((SELECT MAX(load_id) FROM dev_demo_al.t_dim_employee),0);
 
 /********************************************
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_dim_employee', CURRENT_TIMESTAMP, 'AL', 'dim_employee',STEP_NM, V_AFF_CNT);
+INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_dim_employee', CURRENT_TIMESTAMP, 'AL', 't_dim_employee',STEP_NM, V_AFF_CNT);
 
 STEP_NM := 'insert';
 insert into
-  dev_demo_al.dim_employee (
+  dev_demo_al.t_dim_employee (
     employee_id,
     employee_nm,
     phone,
@@ -38,7 +38,7 @@ from
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_dim_employee', CURRENT_TIMESTAMP, 'AL', 'dim_employee',STEP_NM, V_AFF_CNT);
+INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_dim_employee', CURRENT_TIMESTAMP, 'AL', 't_dim_employee',STEP_NM, V_AFF_CNT);
 
 EXCEPTION WHEN OTHERS THEN
     STATUS := 'Failure';

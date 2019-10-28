@@ -7,17 +7,17 @@ DECLARE V_AFF_CNT INTEGER;
 BEGIN
 STATUS := 'Success';
 STEP_NM := 'delete';
-delete from dev_demo_al.dim_prod_hier;
+DELETE FROM dev_demo_al.t_dim_prod_hier WHERE load_id < COALESCE((SELECT MAX(load_id) FROM dev_demo_al.t_dim_prod_hier),0);  
 
 /********************************************
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_dim_prod_hier', CURRENT_TIMESTAMP, 'AL', 'dim_prod_hier',STEP_NM, V_AFF_CNT);
+INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_dim_prod_hier', CURRENT_TIMESTAMP, 'AL', 't_dim_prod_hier',STEP_NM, V_AFF_CNT);
 
 STEP_NM := 'insert';
 insert into
-  dev_demo_al.dim_prod_hier (
+  dev_demo_al.t_dim_prod_hier (
     prod_id,
     prod_nm,
     price,
@@ -57,7 +57,7 @@ from
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_dim_prod_hier', CURRENT_TIMESTAMP, 'AL', 'dim_prod_hier',STEP_NM, V_AFF_CNT);
+INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_dim_prod_hier', CURRENT_TIMESTAMP, 'AL', 't_dim_prod_hier',STEP_NM, V_AFF_CNT);
 
 EXCEPTION WHEN OTHERS THEN
     STATUS := 'Failure';

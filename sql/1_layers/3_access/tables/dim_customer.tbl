@@ -9,7 +9,8 @@ CREATE TABLE dev_demo_al.dim_customer
     email VARCHAR(255),
     city VARCHAR(255),
     state VARCHAR(255),
-    PRIMARY KEY(customer_id)
+    load_id INT,
+    PRIMARY KEY(customer_id,load_id)
 );
 CALL dev_demo_ml.sp_deployment_objects('dim_customer', 'dev_demo_al');
 END TRANSACTION;

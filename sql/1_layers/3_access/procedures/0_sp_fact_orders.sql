@@ -1,5 +1,5 @@
 BEGIN TRANSACTION;
-CREATE OR REPLACE PROCEDURE dev_demo_al.sp_fact_orders(IN LOAD_ID INTEGER, INOUT STATUS VARCHAR(50), INOUT STEP_NM VARCHAR(50), INOUT V_SQLERRM VARCHAR(50), INOUT V_SQLSTATE VARCHAR(50))
+CREATE OR REPLACE PROCEDURE dev_demo_al.sp_fact_orders(IN V_LOAD_ID INTEGER, INOUT STATUS VARCHAR(50), INOUT STEP_NM VARCHAR(50), INOUT V_SQLERRM VARCHAR(50), INOUT V_SQLSTATE VARCHAR(50))
 LANGUAGE plpgsql
 AS $$
 DECLARE V_AFF_CNT INTEGER;
@@ -13,7 +13,7 @@ delete from dev_demo_al.fact_orders;
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.load_actv VALUES(LOAD_ID, 'sp_fact_orders', CURRENT_TIMESTAMP, 'AL', 'fact_orders',STEP_NM, V_AFF_CNT);
+INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_fact_orders', CURRENT_TIMESTAMP, 'AL', 'fact_orders',STEP_NM, V_AFF_CNT);
 
 STEP_NM := 'insert';
 insert into
@@ -28,7 +28,8 @@ insert into
     order_complete_dttm,
     order_status,
     discount,
-    order_amount
+    order_amount,
+    load_id
   )
 select
   w_fact.prod_id,
@@ -41,7 +42,8 @@ select
   w_fact.order_complete_dttm,
   w_fact.order_status,
   w_fact.discount,
-  w_fact.order_amount
+  w_fact.order_amount,
+  V_LOAD_ID
 from
   dev_demo_al.w_fact_orders as w_fact
 ;
@@ -50,7 +52,7 @@ from
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.load_actv VALUES(LOAD_ID, 'sp_fact_orders', CURRENT_TIMESTAMP, 'AL', 'fact_orders',STEP_NM, V_AFF_CNT);
+INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_fact_orders', CURRENT_TIMESTAMP, 'AL', 'fact_orders',STEP_NM, V_AFF_CNT);
 
 EXCEPTION WHEN OTHERS THEN
     STATUS := 'Failure';

@@ -1,5 +1,5 @@
 BEGIN TRANSACTION;
-CREATE OR REPLACE PROCEDURE dev_demo_al.sp_dim_prod_hier(IN LOAD_ID INTEGER, INOUT STATUS VARCHAR(50), INOUT STEP_NM VARCHAR(50), INOUT V_SQLERRM VARCHAR(50), INOUT V_SQLSTATE VARCHAR(50))
+CREATE OR REPLACE PROCEDURE dev_demo_al.sp_dim_prod_hier(IN V_LOAD_ID INTEGER, INOUT STATUS VARCHAR(50), INOUT STEP_NM VARCHAR(50), INOUT V_SQLERRM VARCHAR(50), INOUT V_SQLSTATE VARCHAR(50))
 LANGUAGE plpgsql
 AS $$
 DECLARE V_AFF_CNT INTEGER;
@@ -13,7 +13,7 @@ delete from dev_demo_al.dim_prod_hier;
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.load_actv VALUES(LOAD_ID, 'sp_dim_prod_hier', CURRENT_TIMESTAMP, 'AL', 'dim_prod_hier',STEP_NM, V_AFF_CNT);
+INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_dim_prod_hier', CURRENT_TIMESTAMP, 'AL', 'dim_prod_hier',STEP_NM, V_AFF_CNT);
 
 STEP_NM := 'insert';
 insert into
@@ -30,7 +30,8 @@ insert into
     lvl6_nm,   
     lvl7_nm,
     lvl8_nm,
-    lvl9_nm
+    lvl9_nm,
+    load_id
   )
 select
   w_dim.prod_id,
@@ -45,7 +46,8 @@ select
   w_dim.lvl6_nm,   
   w_dim.lvl7_nm,
   w_dim.lvl8_nm,
-  w_dim.lvl9_nm
+  w_dim.lvl9_nm,
+  V_LOAD_ID
 
 from
   dev_demo_al.w_dim_prod_hier as w_dim
@@ -55,7 +57,7 @@ from
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.load_actv VALUES(LOAD_ID, 'sp_dim_prod_hier', CURRENT_TIMESTAMP, 'AL', 'dim_prod_hier',STEP_NM, V_AFF_CNT);
+INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_dim_prod_hier', CURRENT_TIMESTAMP, 'AL', 'dim_prod_hier',STEP_NM, V_AFF_CNT);
 
 EXCEPTION WHEN OTHERS THEN
     STATUS := 'Failure';

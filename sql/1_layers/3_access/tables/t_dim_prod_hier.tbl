@@ -1,7 +1,7 @@
 BEGIN TRANSACTION;
-DROP TABLE IF EXISTS dev_demo_al.dim_prod_hier CASCADE;
+DROP TABLE IF EXISTS dev_demo_al.t_dim_prod_hier CASCADE;
 
-CREATE TABLE dev_demo_al.dim_prod_hier
+CREATE TABLE dev_demo_al.t_dim_prod_hier
 (
     prod_id BIGINT NOT NULL,
     prod_nm VARCHAR(255),
@@ -16,7 +16,8 @@ CREATE TABLE dev_demo_al.dim_prod_hier
     lvl7_nm VARCHAR(255),
     lvl8_nm VARCHAR(255),
     lvl9_nm VARCHAR(255),
-    PRIMARY KEY(prod_id)
+    load_id INT,
+    PRIMARY KEY(prod_id,load_id)
 );
-CALL dev_demo_ml.sp_deployment_objects('dim_prod_hier', 'dev_demo_al');
+CALL dev_demo_ml.sp_deployment_objects('t_dim_prod_hier', 'dev_demo_al');
 END TRANSACTION;

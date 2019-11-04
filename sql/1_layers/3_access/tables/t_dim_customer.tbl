@@ -1,0 +1,16 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_al.t_dim_customer CASCADE;
+
+CREATE TABLE dev_demo_al.t_dim_customer
+(
+    customer_id BIGINT NOT NULL,
+    customer_nm VARCHAR(255),
+    phone VARCHAR(255),
+    email VARCHAR(255),
+    city VARCHAR(255),
+    state VARCHAR(255),
+    load_id INT,
+    PRIMARY KEY(customer_id,load_id)
+);
+CALL dev_demo_ml.sp_deployment_objects('t_dim_customer', 'dev_demo_al');
+END TRANSACTION;

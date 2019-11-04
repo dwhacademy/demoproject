@@ -1,0 +1,20 @@
+BEGIN TRANSACTION;
+
+CREATE TABLE IF NOT EXISTS dev_demo_ml.load_actv (
+    load_id INT,
+    proc_nm VARCHAR (255),
+    ts TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    layer_nm VARCHAR (255),
+    targ_tbl_nm VARCHAR (255),
+    step_nm VARCHAR (255),
+    cnt_rows INT,
+    PRIMARY KEY (load_id,proc_nm,step_nm,ts)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default
+;
+
+CALL dev_demo_ml.sp_deployment_objects('load_actv', 'dev_demo_ml');
+END TRANSACTION;

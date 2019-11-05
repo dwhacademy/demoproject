@@ -1,4 +1,4 @@
 create or replace function md5(bigint)
 returns text as $$
-select md5($1::text);
+select coalesce(($1::text),md5(1));
 $$ language sql immutable;

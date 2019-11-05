@@ -24,11 +24,11 @@ FROM
     dev_demo_il.v017_party_contact_rltd  v_017
 LEFT JOIN
     dev_demo_il.t017_party_contact_rltd  t017
-    ON md5(t017.party_id) = md5(v_017.party_id)
-    AND md5(t017.relation_nm) = md5(v_017.relation_nm)
-    AND md5(t017.contact_id) = md5(v_017.contact_id)
-    AND md5(t017.phone) = md5(v_017.phone)
-    AND md5(t017.rel_cd) = md5(v_017.rel_cd)
+    ON md5_hash(t017.party_id) = md5_hash(v_017.party_id)
+    AND md5_hash(t017.relation_nm) = md5_hash(v_017.relation_nm)
+    AND md5_hash(t017.contact_id) = md5_hash(v_017.contact_id)
+    AND md5_hash(t017.phone) = md5_hash(v_017.phone)
+    AND md5_hash(t017.rel_cd) = md5_hash(v_017.rel_cd)
  
 WHERE t017.party_id IS NULL
 ;
@@ -56,11 +56,11 @@ FROM
     dev_demo_il.t017_party_contact_rltd  t017
 LEFT JOIN
     dev_demo_il.v017_party_contact_rltd  v_017
-    ON md5(t017.party_id) = md5(v_017.party_id)
-    AND md5(t017.relation_nm) = md5(v_017.relation_nm)
-    AND md5(t017.contact_id) = md5(v_017.contact_id)
-    AND md5(t017.phone) = md5(v_017.phone)
-    AND md5(t017.rel_cd) = md5(v_017.rel_cd)
+    ON md5_hash(t017.party_id) = md5_hash(v_017.party_id)
+    AND md5_hash(t017.relation_nm) = md5_hash(v_017.relation_nm)
+    AND md5_hash(t017.contact_id) = md5_hash(v_017.contact_id)
+    AND md5_hash(t017.phone) = md5_hash(v_017.phone)
+    AND md5_hash(t017.rel_cd) = md5_hash(v_017.rel_cd)
  
 WHERE v_017.party_id IS NULL
 ;

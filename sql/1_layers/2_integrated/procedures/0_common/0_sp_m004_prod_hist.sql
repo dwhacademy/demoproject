@@ -73,11 +73,11 @@ FROM
     dev_demo_il.v004_prod  v_004
 LEFT JOIN
     dev_demo_il.t004_prod  t004
-    ON md5(t004.prod_id) = md5(v_004.prod_id)
-    AND md5(t004.prod_cd) = md5(v_004.prod_cd)
-    AND md5(t004.prod_nm) = md5(v_004.prod_nm)
-    AND md5(t004.model_year) = md5(v_004.model_year)
-    AND md5(t004.price) = md5(v_004.price)
+    ON md5_hash(t004.prod_id) = md5_hash(v_004.prod_id)
+    AND md5_hash(t004.prod_cd) = md5_hash(v_004.prod_cd)
+    AND md5_hash(t004.prod_nm) = md5_hash(v_004.prod_nm)
+    AND md5_hash(t004.model_year) = md5_hash(v_004.model_year)
+    AND md5_hash(t004.price) = md5_hash(v_004.price)
  
 WHERE t004.prod_id IS NULL
 ;
@@ -105,11 +105,11 @@ FROM
     dev_demo_il.t004_prod  t004
 LEFT JOIN
     dev_demo_il.v004_prod  v_004
-    ON md5(t004.prod_id) = md5(v_004.prod_id)
-    AND md5(t004.prod_cd) = md5(v_004.prod_cd)
-    AND md5(t004.prod_nm) = md5(v_004.prod_nm)
-    AND md5(t004.model_year) = md5(v_004.model_year)
-    AND md5(t004.price) = md5(v_004.price)
+    ON md5_hash(t004.prod_id) = md5_hash(v_004.prod_id)
+    AND md5_hash(t004.prod_cd) = md5_hash(v_004.prod_cd)
+    AND md5_hash(t004.prod_nm) = md5_hash(v_004.prod_nm)
+    AND md5_hash(t004.model_year) = md5_hash(v_004.model_year)
+    AND md5_hash(t004.price) = md5_hash(v_004.price)
  
 WHERE v_004.prod_id IS NULL
 ;

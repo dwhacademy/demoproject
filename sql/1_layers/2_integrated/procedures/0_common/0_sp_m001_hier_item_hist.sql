@@ -73,10 +73,10 @@ FROM
     dev_demo_il.v001_hier_item  v_001
 LEFT JOIN
     dev_demo_il.t001_hier_item  t001
-    ON md5(t001.hier_item_id) = md5(v_001.hier_item_id)
-    AND md5(t001.hier_item_nm) = md5(v_001.hier_item_nm)
-    AND md5(t001.lvl) = md5(v_001.lvl)
-    AND md5(t001.hier_cd) = md5(v_001.hier_cd)
+    ON md5_hash(t001.hier_item_id) = md5_hash(v_001.hier_item_id)
+    AND md5_hash(t001.hier_item_nm) = md5_hash(v_001.hier_item_nm)
+    AND md5_hash(t001.lvl) = md5_hash(v_001.lvl)
+    AND md5_hash(t001.hier_cd) = md5_hash(v_001.hier_cd)
  
 WHERE t001.hier_item_id IS NULL
 ;
@@ -103,10 +103,10 @@ FROM
     dev_demo_il.t001_hier_item  t001
 LEFT JOIN
     dev_demo_il.v001_hier_item  v_001
-    ON md5(t001.hier_item_id) = md5(v_001.hier_item_id)
-    AND md5(t001.hier_item_nm) = md5(v_001.hier_item_nm)
-    AND md5(t001.lvl) = md5(v_001.lvl)
-    AND md5(t001.hier_cd) = md5(v_001.hier_cd)
+    ON md5_hash(t001.hier_item_id) = md5_hash(v_001.hier_item_id)
+    AND md5_hash(t001.hier_item_nm) = md5_hash(v_001.hier_item_nm)
+    AND md5_hash(t001.lvl) = md5_hash(v_001.lvl)
+    AND md5_hash(t001.hier_cd) = md5_hash(v_001.hier_cd)
  
 WHERE v_001.hier_item_id IS NULL
 ;

@@ -24,11 +24,11 @@ FROM
     dev_demo_il.v015_address  v_015
 LEFT JOIN
     dev_demo_il.t015_address  t015
-    ON md5(t015.loc_id) = md5(v_015.loc_id)
-    AND md5(t015.street) = md5(v_015.street)
-    AND md5(t015.city) = md5(v_015.city)
-    AND md5(t015.state) = md5(v_015.state)
-    AND md5(t015.zip_cd) = md5(v_015.zip_cd)
+    ON md5_hash(t015.loc_id) = md5_hash(v_015.loc_id)
+    AND md5_hash(t015.street) = md5_hash(v_015.street)
+    AND md5_hash(t015.city) = md5_hash(v_015.city)
+    AND md5_hash(t015.state) = md5_hash(v_015.state)
+    AND md5_hash(t015.zip_cd) = md5_hash(v_015.zip_cd)
  
 WHERE t015.loc_id IS NULL
 ;
@@ -56,11 +56,11 @@ FROM
     dev_demo_il.t015_address  t015
 LEFT JOIN
     dev_demo_il.v015_address  v_015
-    ON md5(t015.loc_id) = md5(v_015.loc_id)
-    AND md5(t015.street) = md5(v_015.street)
-    AND md5(t015.city) = md5(v_015.city)
-    AND md5(t015.state) = md5(v_015.state)
-    AND md5(t015.zip_cd) = md5(v_015.zip_cd)
+    ON md5_hash(t015.loc_id) = md5_hash(v_015.loc_id)
+    AND md5_hash(t015.street) = md5_hash(v_015.street)
+    AND md5_hash(t015.city) = md5_hash(v_015.city)
+    AND md5_hash(t015.state) = md5_hash(v_015.state)
+    AND md5_hash(t015.zip_cd) = md5_hash(v_015.zip_cd)
  
 WHERE v_015.loc_id IS NULL
 ;

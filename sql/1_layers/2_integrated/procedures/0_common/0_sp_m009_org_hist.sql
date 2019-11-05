@@ -24,8 +24,8 @@ FROM
     dev_demo_il.v009_org  v_009
 LEFT JOIN
     dev_demo_il.t009_org  t009
-    ON md5(t009.party_id) = md5(v_009.party_id)
-    AND md5(t009.org_nm) = md5(v_009.org_nm)
+    ON md5_hash(t009.party_id) = md5_hash(v_009.party_id)
+    AND md5_hash(t009.org_nm) = md5_hash(v_009.org_nm)
  
 WHERE t009.party_id IS NULL
 ;
@@ -50,8 +50,8 @@ FROM
     dev_demo_il.t009_org  t009
 LEFT JOIN
     dev_demo_il.v009_org  v_009
-    ON md5(t009.party_id) = md5(v_009.party_id)
-    AND md5(t009.org_nm) = md5(v_009.org_nm)
+    ON md5_hash(t009.party_id) = md5_hash(v_009.party_id)
+    AND md5_hash(t009.org_nm) = md5_hash(v_009.org_nm)
  
 WHERE v_009.party_id IS NULL
 ;

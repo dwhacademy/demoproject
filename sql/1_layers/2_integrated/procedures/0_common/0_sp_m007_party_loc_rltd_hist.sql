@@ -24,9 +24,9 @@ FROM
     dev_demo_il.v007_party_loc_rltd  v_007
 LEFT JOIN
     dev_demo_il.t007_party_loc_rltd  t007
-    ON md5(t007.party_id) = md5(v_007.party_id)
-    AND md5(t007.loc_id) = md5(v_007.loc_id)
-    AND md5(t007.rel_cd) = md5(v_007.rel_cd)
+    ON md5_hash(t007.party_id) = md5_hash(v_007.party_id)
+    AND md5_hash(t007.loc_id) = md5_hash(v_007.loc_id)
+    AND md5_hash(t007.rel_cd) = md5_hash(v_007.rel_cd)
  
 WHERE t007.party_id IS NULL
 ;
@@ -52,9 +52,9 @@ FROM
     dev_demo_il.t007_party_loc_rltd  t007
 LEFT JOIN
     dev_demo_il.v007_party_loc_rltd  v_007
-    ON md5(t007.party_id) = md5(v_007.party_id)
-    AND md5(t007.loc_id) = md5(v_007.loc_id)
-    AND md5(t007.rel_cd) = md5(v_007.rel_cd)
+    ON md5_hash(t007.party_id) = md5_hash(v_007.party_id)
+    AND md5_hash(t007.loc_id) = md5_hash(v_007.loc_id)
+    AND md5_hash(t007.rel_cd) = md5_hash(v_007.rel_cd)
  
 WHERE v_007.party_id IS NULL
 ;

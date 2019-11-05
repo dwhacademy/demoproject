@@ -73,8 +73,8 @@ FROM
     dev_demo_il.v006_party  v_006
 LEFT JOIN
     dev_demo_il.t006_party  t006
-    ON md5(t006.party_id) = md5(v_006.party_id)
-    AND md5(t006.party_subtype) = md5(v_006.party_subtype)
+    ON md5_hash(t006.party_id) = md5_hash(v_006.party_id)
+    AND md5_hash(t006.party_subtype) = md5_hash(v_006.party_subtype)
  
 WHERE t006.party_id IS NULL
 ;
@@ -99,8 +99,8 @@ FROM
     dev_demo_il.t006_party  t006
 LEFT JOIN
     dev_demo_il.v006_party  v_006
-    ON md5(t006.party_id) = md5(v_006.party_id)
-    AND md5(t006.party_subtype) = md5(v_006.party_subtype)
+    ON md5_hash(t006.party_id) = md5_hash(v_006.party_id)
+    AND md5_hash(t006.party_subtype) = md5_hash(v_006.party_subtype)
  
 WHERE v_006.party_id IS NULL
 ;

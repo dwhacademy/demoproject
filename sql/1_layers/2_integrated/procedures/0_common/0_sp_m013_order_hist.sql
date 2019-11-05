@@ -73,12 +73,12 @@ FROM
     dev_demo_il.v013_order  v_013
 LEFT JOIN
     dev_demo_il.t013_order  t013
-    ON md5(t013.order_id) = md5(v_013.order_id)
-    AND md5(t013.order_cd) = md5(v_013.order_cd)
-    AND md5(t013.order_start_dttm) = md5(v_013.order_start_dttm)
-    AND md5(t013.order_due_dttm) = md5(v_013.order_due_dttm)
-    AND md5(t013.order_complete_dttm) = md5(v_013.order_complete_dttm)
-    AND md5(t013.status) = md5(v_013.status)
+    ON md5_hash(t013.order_id) = md5_hash(v_013.order_id)
+    AND md5_hash(t013.order_cd) = md5_hash(v_013.order_cd)
+    AND md5_hash(t013.order_start_dttm) = md5_hash(v_013.order_start_dttm)
+    AND md5_hash(t013.order_due_dttm) = md5_hash(v_013.order_due_dttm)
+    AND md5_hash(t013.order_complete_dttm) = md5_hash(v_013.order_complete_dttm)
+    AND md5_hash(t013.status) = md5_hash(v_013.status)
  
 WHERE t013.order_id IS NULL
 ;
@@ -107,12 +107,12 @@ FROM
     dev_demo_il.t013_order  t013
 LEFT JOIN
     dev_demo_il.v013_order  v_013
-    ON md5(t013.order_id) = md5(v_013.order_id)
-    AND md5(t013.order_cd) = md5(v_013.order_cd)
-    AND md5(t013.order_start_dttm) = md5(v_013.order_start_dttm)
-    AND md5(t013.order_due_dttm) = md5(v_013.order_due_dttm)
-    AND md5(t013.order_complete_dttm) = md5(v_013.order_complete_dttm)
-    AND md5(t013.status) = md5(v_013.status)
+    ON md5_hash(t013.order_id) = md5_hash(v_013.order_id)
+    AND md5_hash(t013.order_cd) = md5_hash(v_013.order_cd)
+    AND md5_hash(t013.order_start_dttm) = md5_hash(v_013.order_start_dttm)
+    AND md5_hash(t013.order_due_dttm) = md5_hash(v_013.order_due_dttm)
+    AND md5_hash(t013.order_complete_dttm) = md5_hash(v_013.order_complete_dttm)
+    AND md5_hash(t013.status) = md5_hash(v_013.status)
  
 WHERE v_013.order_id IS NULL
 ;

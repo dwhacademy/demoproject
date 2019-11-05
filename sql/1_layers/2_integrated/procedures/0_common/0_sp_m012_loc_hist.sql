@@ -73,8 +73,8 @@ FROM
     dev_demo_il.v012_loc  v_012
 LEFT JOIN
     dev_demo_il.t012_loc  t012
-    ON md5(t012.loc_id) = md5(v_012.loc_id)
-    AND md5(t012.loc_subtype) = md5(v_012.loc_subtype)
+    ON md5_hash(t012.loc_id) = md5_hash(v_012.loc_id)
+    AND md5_hash(t012.loc_subtype) = md5_hash(v_012.loc_subtype)
  
 WHERE t012.loc_id IS NULL
 ;
@@ -99,8 +99,8 @@ FROM
     dev_demo_il.t012_loc  t012
 LEFT JOIN
     dev_demo_il.v012_loc  v_012
-    ON md5(t012.loc_id) = md5(v_012.loc_id)
-    AND md5(t012.loc_subtype) = md5(v_012.loc_subtype)
+    ON md5_hash(t012.loc_id) = md5_hash(v_012.loc_id)
+    AND md5_hash(t012.loc_subtype) = md5_hash(v_012.loc_subtype)
  
 WHERE v_012.loc_id IS NULL
 ;

@@ -24,11 +24,11 @@ FROM
     dev_demo_il.v018_order_item  v_018
 LEFT JOIN
     dev_demo_il.t018_order_item  t018
-    ON md5(t018.order_id) = md5(v_018.order_id)
-    AND md5(t018.prod_id) = md5(v_018.prod_id)
-    AND md5(t018.quantity) = md5(v_018.quantity)
-    AND md5(t018.price) = md5(v_018.price)
-    AND md5(t018.discount) = md5(v_018.discount)
+    ON md5_hash(t018.order_id) = md5_hash(v_018.order_id)
+    AND md5_hash(t018.prod_id) = md5_hash(v_018.prod_id)
+    AND md5_hash(t018.quantity) = md5_hash(v_018.quantity)
+    AND md5_hash(t018.price) = md5_hash(v_018.price)
+    AND md5_hash(t018.discount) = md5_hash(v_018.discount)
  
 WHERE t018.order_id IS NULL
 ;
@@ -56,11 +56,11 @@ FROM
     dev_demo_il.t018_order_item  t018
 LEFT JOIN
     dev_demo_il.v018_order_item  v_018
-    ON md5(t018.order_id) = md5(v_018.order_id)
-    AND md5(t018.prod_id) = md5(v_018.prod_id)
-    AND md5(t018.quantity) = md5(v_018.quantity)
-    AND md5(t018.price) = md5(v_018.price)
-    AND md5(t018.discount) = md5(v_018.discount)
+    ON md5_hash(t018.order_id) = md5_hash(v_018.order_id)
+    AND md5_hash(t018.prod_id) = md5_hash(v_018.prod_id)
+    AND md5_hash(t018.quantity) = md5_hash(v_018.quantity)
+    AND md5_hash(t018.price) = md5_hash(v_018.price)
+    AND md5_hash(t018.discount) = md5_hash(v_018.discount)
  
 WHERE v_018.order_id IS NULL
 ;

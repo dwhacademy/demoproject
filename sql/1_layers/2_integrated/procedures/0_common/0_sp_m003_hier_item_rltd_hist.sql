@@ -24,8 +24,8 @@ FROM
     dev_demo_il.v003_hier_item_rltd  v_003
 LEFT JOIN
     dev_demo_il.t003_hier_item_rltd  t003
-    ON md5(t003.parent_hier_item_id) = md5(v_003.parent_hier_item_id)
-    AND md5(t003.child_hier_item_id) = md5(v_003.child_hier_item_id)
+    ON md5_hash(t003.parent_hier_item_id) = md5_hash(v_003.parent_hier_item_id)
+    AND md5_hash(t003.child_hier_item_id) = md5_hash(v_003.child_hier_item_id)
  
 WHERE t003.parent_hier_item_id IS NULL
 ;
@@ -50,8 +50,8 @@ FROM
     dev_demo_il.t003_hier_item_rltd  t003
 LEFT JOIN
     dev_demo_il.v003_hier_item_rltd  v_003
-    ON md5(t003.parent_hier_item_id) = md5(v_003.parent_hier_item_id)
-    AND md5(t003.child_hier_item_id) = md5(v_003.child_hier_item_id)
+    ON md5_hash(t003.parent_hier_item_id) = md5_hash(v_003.parent_hier_item_id)
+    AND md5_hash(t003.child_hier_item_id) = md5_hash(v_003.child_hier_item_id)
  
 WHERE v_003.parent_hier_item_id IS NULL
 ;

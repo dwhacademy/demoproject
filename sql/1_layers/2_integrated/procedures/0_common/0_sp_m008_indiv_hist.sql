@@ -24,10 +24,10 @@ FROM
     dev_demo_il.v008_indiv  v_008
 LEFT JOIN
     dev_demo_il.t008_indiv  t008
-    ON md5(t008.party_id) = md5(v_008.party_id)
-    AND md5(t008.first_nm) = md5(v_008.first_nm)
-    AND md5(t008.last_nm) = md5(v_008.last_nm)
-    AND md5(t008.active_flag) = md5(v_008.active_flag)
+    ON md5_hash(t008.party_id) = md5_hash(v_008.party_id)
+    AND md5_hash(t008.first_nm) = md5_hash(v_008.first_nm)
+    AND md5_hash(t008.last_nm) = md5_hash(v_008.last_nm)
+    AND md5_hash(t008.active_flag) = md5_hash(v_008.active_flag)
  
 WHERE t008.party_id IS NULL
 ;
@@ -54,10 +54,10 @@ FROM
     dev_demo_il.t008_indiv  t008
 LEFT JOIN
     dev_demo_il.v008_indiv  v_008
-    ON md5(t008.party_id) = md5(v_008.party_id)
-    AND md5(t008.first_nm) = md5(v_008.first_nm)
-    AND md5(t008.last_nm) = md5(v_008.last_nm)
-    AND md5(t008.active_flag) = md5(v_008.active_flag)
+    ON md5_hash(t008.party_id) = md5_hash(v_008.party_id)
+    AND md5_hash(t008.first_nm) = md5_hash(v_008.first_nm)
+    AND md5_hash(t008.last_nm) = md5_hash(v_008.last_nm)
+    AND md5_hash(t008.active_flag) = md5_hash(v_008.active_flag)
  
 WHERE v_008.party_id IS NULL
 ;

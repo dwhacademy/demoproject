@@ -73,9 +73,9 @@ FROM
     dev_demo_il.v016_contact  v_016
 LEFT JOIN
     dev_demo_il.t016_contact  t016
-    ON md5(t016.contact_id) = md5(v_016.contact_id)
-    AND md5(t016.contact_type) = md5(v_016.contact_type)
-    AND md5(t016.contact_txt) = md5(v_016.contact_txt)
+    ON md5_hash(t016.contact_id) = md5_hash(v_016.contact_id)
+    AND md5_hash(t016.contact_type) = md5_hash(v_016.contact_type)
+    AND md5_hash(t016.contact_txt) = md5_hash(v_016.contact_txt)
  
 WHERE t016.contact_id IS NULL
 ;
@@ -101,9 +101,9 @@ FROM
     dev_demo_il.t016_contact  t016
 LEFT JOIN
     dev_demo_il.v016_contact  v_016
-    ON md5(t016.contact_id) = md5(v_016.contact_id)
-    AND md5(t016.contact_type) = md5(v_016.contact_type)
-    AND md5(t016.contact_txt) = md5(v_016.contact_txt)
+    ON md5_hash(t016.contact_id) = md5_hash(v_016.contact_id)
+    AND md5_hash(t016.contact_type) = md5_hash(v_016.contact_type)
+    AND md5_hash(t016.contact_txt) = md5_hash(v_016.contact_txt)
  
 WHERE v_016.contact_id IS NULL
 ;

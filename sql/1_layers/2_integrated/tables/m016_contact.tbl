@@ -6,7 +6,9 @@ CREATE TABLE dev_demo_il.m016_contact
     contact_id BIGINT NOT NULL,
     contact_type VARCHAR(255),
     contact_txt VARCHAR(255),
-    PRIMARY KEY(contact_id)
+    dw_start_dttm TIMESTAMP,
+    dw_end_dttm TIMESTAMP,
+    PRIMARY KEY(contact_id, dw_end_dttm)
 );
 CALL dev_demo_ml.sp_deployment_objects('m016_contact', 'dev_demo_il');
 END TRANSACTION;

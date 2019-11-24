@@ -1,0 +1,70 @@
+BEGIN TRANSACTION;
+CREATE OR REPLACE PROCEDURE  dev_demo_il.sp_m005_hier_item_prod_rltd_hist
+(
+in PROC_NM VARCHAR(255)
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE V_LOAD_ID INTEGER;
+DECLARE V_AFF_CNT INTEGER;
+DECLARE V_TARG_TBL_NM VARCHAR(255) := 'm005_hier_item_prod_rltd';
+DECLARE V_SCHEMA_NM VARCHAR(255) := 'dev_demo_il';
+BEGIN
+/********************************************
+ * SET PROCEDURE CONSTANTS
+********************************************/
+SELECT MAX(load_id) into V_LOAD_ID  FROM dev_demo_ml.load;
+ 
+/********************************************
+ * UPDATE STATEMENT TO BE EXECUTED
+********************************************/
+UPDATE dev_demo_il.m005_hier_item_prod_rltd
+SET dw_end_dttm = CURRENT_TIMESTAMP
+FROM 
+    dev_demo_il.v005_hier_item_prod_rltd  v_005
+LEFT JOIN
+    dev_demo_il.t005_hier_item_prod_rltd  t005
+    ON md5_hash(t005.hier_item_id) = md5_hash(v_005.hier_item_id)
+    AND md5_hash(t005.prod_id) = md5_hash(v_005.prod_id)
+ 
+WHERE t005.hier_item_id IS NULL
+;
+ 
+/********************************************
+ * LOGGING ACTIVITY
+********************************************/
+GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
+INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, V_SCHEMA_NM, PROC_NM, V_TARG_TBL_NM,'delete', V_AFF_CNT);
+ 
+/********************************************
+ * INSERT STATEMENT TO BE EXECUTED
+********************************************/
+INSERT INTO
+    dev_demo_il.m005_hier_item_prod_rltd
+SELECT
+    t005.hier_item_id,
+    t005.prod_id,
+    CURRENT_TIMESTAMP AS dw_start_dttm, 
+    TIMESTAMP '2100-01-01 00:00:00' AS dw_end_dttm 
+FROM
+    dev_demo_il.t005_hier_item_prod_rltd  t005
+LEFT JOIN
+    dev_demo_il.v005_hier_item_prod_rltd  v_005
+    ON md5_hash(t005.hier_item_id) = md5_hash(v_005.hier_item_id)
+    AND md5_hash(t005.prod_id) = md5_hash(v_005.prod_id)
+ 
+WHERE v_005.hier_item_id IS NULL
+;
+ 
+/********************************************
+ * LOGGING ACTIVITY
+********************************************/
+GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
+INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, V_SCHEMA_NM, PROC_NM, V_TARG_TBL_NM,'insert', V_AFF_CNT);
+ 
+END
+$$;
+ 
+CALL dev_demo_ml.sp_deployment_objects('sp_m005_hier_item_prod_rltd_hist','dev_demo_il');
+END TRANSACTION;
+ 

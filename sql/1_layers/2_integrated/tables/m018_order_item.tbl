@@ -8,7 +8,9 @@ CREATE TABLE dev_demo_il.m018_order_item
     quantity INTEGER,
     price DECIMAL(20, 2),
     discount DECIMAL(20, 2),
-    PRIMARY KEY(order_id, prod_id)
+    dw_start_dttm TIMESTAMP,
+    dw_end_dttm TIMESTAMP,
+    PRIMARY KEY(order_id, prod_id, dw_end_dttm)
 );
 CALL dev_demo_ml.sp_deployment_objects('m018_order_item', 'dev_demo_il');
 END TRANSACTION;

@@ -1,0 +1,21 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_il.t001_hier_item CASCADE;
+ 
+CREATE TABLE dev_demo_il.t001_hier_item
+(
+    hier_item_id BIGINT,
+    hier_item_nm VARCHAR(255) ,
+    lvl INTEGER ,
+    hier_cd INTEGER ,
+    hier_item_src_pfx VARCHAR(1024) NOT NULL,
+    hier_item_src_key VARCHAR(1024) NOT NULL,
+    src_syst_id INTEGER NOT NULL,
+PRIMARY KEY
+(
+    hier_item_src_pfx
+    , hier_item_src_key
+    , src_syst_id
+)
+);
+CALL dev_demo_ml.sp_deployment_objects('t001_hier_item','dev_demo_il');
+END TRANSACTION;

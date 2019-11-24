@@ -1,0 +1,19 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_il.t012_loc CASCADE;
+ 
+CREATE TABLE dev_demo_il.t012_loc
+(
+    loc_id BIGINT ,
+    loc_subtype VARCHAR(255) ,
+    loc_src_pfx VARCHAR(1024) NOT NULL,
+    loc_src_key VARCHAR(1024) NOT NULL,
+    src_syst_id INTEGER NOT NULL,
+PRIMARY KEY
+(
+    loc_src_pfx
+    , loc_src_key
+    , src_syst_id
+)
+);
+CALL dev_demo_ml.sp_deployment_objects('t012_loc','dev_demo_il');
+END TRANSACTION;

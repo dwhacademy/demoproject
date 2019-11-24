@@ -5,7 +5,9 @@ CREATE TABLE dev_demo_il.m003_hier_item_rltd
 (
     parent_hier_item_id BIGINT NOT NULL,
     child_hier_item_id BIGINT NOT NULL UNIQUE,
-    PRIMARY KEY(child_hier_item_id)
+    dw_start_dttm TIMESTAMP,
+    dw_end_dttm TIMESTAMP,
+    PRIMARY KEY(child_hier_item_id, dw_end_dttm)
 );
 CALL dev_demo_ml.sp_deployment_objects('m003_hier_item_rltd', 'dev_demo_il');
 END TRANSACTION;

@@ -1,0 +1,23 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_il.t013_order CASCADE;
+ 
+CREATE TABLE dev_demo_il.t013_order
+(
+    order_id BIGINT ,
+    order_cd VARCHAR(255) ,
+    order_start_dttm TIMESTAMP WITHOUT TIME ZONE ,
+    order_due_dttm TIMESTAMP WITHOUT TIME ZONE ,
+    order_complete_dttm TIMESTAMP WITHOUT TIME ZONE ,
+    status VARCHAR(255) ,
+    order_src_pfx VARCHAR(1024) NOT NULL,
+    order_src_key VARCHAR(1024) NOT NULL,
+    src_syst_id INTEGER NOT NULL,
+PRIMARY KEY
+(
+    order_src_pfx
+    , order_src_key
+    , src_syst_id
+)
+);
+CALL dev_demo_ml.sp_deployment_objects('t013_order','dev_demo_il');
+END TRANSACTION;

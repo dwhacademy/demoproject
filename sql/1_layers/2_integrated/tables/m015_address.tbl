@@ -8,7 +8,9 @@ CREATE TABLE dev_demo_il.m015_address
     city VARCHAR(255),
     state VARCHAR(255),
     zip_cd VARCHAR(255),
-    PRIMARY KEY(loc_id)
+    dw_start_dttm TIMESTAMP,
+    dw_end_dttm TIMESTAMP,
+    PRIMARY KEY(loc_id, dw_end_dttm)
 );
 CALL dev_demo_ml.sp_deployment_objects('m015_address', 'dev_demo_il');
 END TRANSACTION;

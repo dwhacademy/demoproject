@@ -1,0 +1,16 @@
+BEGIN TRANSACTION;
+DROP TABLE IF EXISTS dev_demo_il.t008_indiv CASCADE;
+ 
+CREATE TABLE dev_demo_il.t008_indiv
+(
+    party_id BIGINT NOT NULL,
+    first_nm VARCHAR(255) ,
+    last_nm VARCHAR(255) ,
+    active_flag VARCHAR(255) ,
+PRIMARY KEY
+(
+    party_id
+)
+);
+CALL dev_demo_ml.sp_deployment_objects('t008_indiv','dev_demo_il');
+END TRANSACTION;

@@ -7,7 +7,9 @@ CREATE TABLE dev_demo_il.m008_indiv
     first_nm VARCHAR(255),
     last_nm VARCHAR(255),
     active_flag VARCHAR(255),
-    PRIMARY KEY(party_id)
+    dw_start_dttm TIMESTAMP,
+    dw_end_dttm TIMESTAMP,
+    PRIMARY KEY(party_id, dw_end_dttm)
 );
 CALL dev_demo_ml.sp_deployment_objects('m008_indiv', 'dev_demo_il');
 END TRANSACTION;

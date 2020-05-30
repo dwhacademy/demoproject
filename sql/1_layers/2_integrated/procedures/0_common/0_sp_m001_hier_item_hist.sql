@@ -1,24 +1,22 @@
 BEGIN TRANSACTION;
 CREATE OR REPLACE PROCEDURE  dev_demo_il.sp_m001_hier_item_hist
 (
-in PROC_NM VARCHAR(255)
+IN V_LOAD_ID INTEGER, 
+INOUT STATUS VARCHAR(50), 
+INOUT STEP_NM VARCHAR(50), 
+INOUT V_SQLERRM VARCHAR(50), 
+INOUT V_SQLSTATE VARCHAR(50)
 )
 LANGUAGE plpgsql
 AS $$
-DECLARE V_LOAD_ID INTEGER;
 DECLARE V_AFF_CNT INTEGER;
-DECLARE V_TARG_TBL_NM VARCHAR(255) := 'm001_hier_item';
-DECLARE V_KEY_TBL_NM VARCHAR(255) := 'k001_hier_item_key';
-DECLARE V_SCHEMA_NM VARCHAR(255) := 'dev_demo_il';
+
 BEGIN
-/********************************************
- * SET PROCEDURE CONSTANTS
-********************************************/
-SELECT MAX(load_id) into V_LOAD_ID  FROM dev_demo_ml.load;
  
 /********************************************
  * SURROGATE KEY GENERATION
 *********************************************/
+STEP_NM := 'insert';
 insert into
     dev_demo_il.k001_hier_item_key (
     hier_item_id
@@ -48,11 +46,13 @@ GROUP BY
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, V_SCHEMA_NM, PROC_NM, V_KEY_TBL_NM,'insert', V_AFF_CNT);
+INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_m001_hier_item_hist', CURRENT_TIMESTAMP, 'IL', 'k001_hier_item_key',STEP_NM, V_AFF_CNT);
+
  
 /********************************************
  * MERGING SURROGATE KEYS BACK TO TEMP TABLE
 ********************************************/
+STEP_NM := 'update';
 UPDATE dev_demo_il.t001_hier_item t001
 SET hier_item_id = k001.hier_item_id
 FROM
@@ -63,10 +63,18 @@ WHERE
     k001.src_syst_id = t001.src_syst_id AND
     t001.hier_item_id is null
 ;
+
+/********************************************
+ * LOGGING ACTIVITY
+********************************************/
+GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
+INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_m001_hier_item_hist', CURRENT_TIMESTAMP, 'IL', 't001_hier_item',STEP_NM, V_AFF_CNT);
+
  
 /********************************************
  * UPDATE STATEMENT TO BE EXECUTED
 ********************************************/
+STEP_NM := 'update';
 UPDATE dev_demo_il.m001_hier_item
 SET dw_end_dttm = CURRENT_TIMESTAMP
 FROM 
@@ -85,11 +93,13 @@ WHERE t001.hier_item_id IS NULL
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, V_SCHEMA_NM, PROC_NM, V_TARG_TBL_NM,'delete', V_AFF_CNT);
+INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_m001_hier_item_hist', CURRENT_TIMESTAMP, 'IL', 'm001_hier_item',STEP_NM, V_AFF_CNT);
+
  
 /********************************************
  * INSERT STATEMENT TO BE EXECUTED
 ********************************************/
+STEP_NM := 'insert';
 INSERT INTO
     dev_demo_il.m001_hier_item
 SELECT
@@ -115,8 +125,14 @@ WHERE v_001.hier_item_id IS NULL
  * LOGGING ACTIVITY
 ********************************************/
 GET DIAGNOSTICS V_AFF_CNT = ROW_COUNT;
-INSERT INTO dev_demo_ml.log VALUES(V_LOAD_ID, CURRENT_TIMESTAMP, V_SCHEMA_NM, PROC_NM, V_TARG_TBL_NM,'insert', V_AFF_CNT);
- 
+INSERT INTO dev_demo_ml.load_actv VALUES(V_LOAD_ID, 'sp_m001_hier_item_hist', CURRENT_TIMESTAMP, 'IL', 'm001_hier_item',STEP_NM, V_AFF_CNT);
+
+STATUS := 'Success';
+EXCEPTION WHEN OTHERS THEN
+    STATUS := 'Failure';
+    V_SQLERRM := SQLERRM;
+    V_SQLSTATE := SQLSTATE;
+
 END
 $$;
  

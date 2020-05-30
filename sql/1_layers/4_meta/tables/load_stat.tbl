@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS dev_demo_ml.load_stat (
     sql_stat VARCHAR (255),
     layer_nm VARCHAR (255),
 	load_status VARCHAR (255),
-	PRIMARY KEY (load_id,proc_nm)
+	PRIMARY KEY (load_id,proc_nm,step_nm,ts)
 )
 WITH (
     OIDS = FALSE

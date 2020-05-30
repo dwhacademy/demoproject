@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS dev_demo_ml.load_actv (
     targ_tbl_nm VARCHAR (255),
     step_nm VARCHAR (255),
     cnt_rows INT,
-    PRIMARY KEY (load_id,proc_nm,step_nm,ts)
+    PRIMARY KEY (load_id,proc_nm,targ_tbl_nm,step_nm,ts)
 )
 WITH (
     OIDS = FALSE

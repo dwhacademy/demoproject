@@ -10,14 +10,16 @@ DECLARE SQL_State VARCHAR(255);
 BEGIN
 Step := '';
 
-/*
-call dev_demo_il.sp_md_m002_hier();
-*/
-
 -- LOAD INIT.
 Status := 'Success';
 SELECT COALESCE(MAX(load_id)+1,100000) into V_Load_ID  FROM dev_demo_ml.load_stat WHERE proc_nm = 'LOAD_INIT'; 
 INSERT INTO dev_demo_ml.load_stat VALUES(V_Load_ID, 'LOAD_INIT', CURRENT_TIMESTAMP, Step, SQL_Error, SQL_State, 'IL', Status);
+
+-- sp_md_m002_hier
+Status := 'Success';
+call dev_demo_il.sp_md_m002_hier(V_Load_ID, Status, Step, SQL_Error, SQL_State);
+INSERT INTO dev_demo_ml.load_stat VALUES(V_Load_ID, 'sp_md_m002_hier', CURRENT_TIMESTAMP, Step, SQL_Error, SQL_State, 'IL', Status);
+
 
 -- sp_md_m001_hier_item
 Status := 'Success';
